@@ -1,10 +1,18 @@
 package sistemasaladecomputo;
-
 import java.sql.Connection;
-
+import java.util.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Set;
+import javax.swing.JTextField;
 public class PanelPrestamo extends javax.swing.JFrame {
     conectar conexion = new conectar();
-        Connection conexion2=conexion.getConnection();
+    Connection conexion2;
+    PreparedStatement preparadorSentencia;
+    Date fecha;
     
      public PanelPrestamo() {
         initComponents();
@@ -25,9 +33,13 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jtf_claveArticulo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jtf_fechaPrestamo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtf_fechaEntrega = new javax.swing.JTextField();
+        currentDate = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        lbl_idPrestador = new javax.swing.JLabel();
+        lbl_idEncargado = new javax.swing.JLabel();
+        lbl_idArticulo = new javax.swing.JLabel();
+        lbl_estatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,18 +89,21 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(204, 204, 255));
         jLabel2.setText("fecha de prestamo");
 
-        jtf_fechaPrestamo.setEditable(false);
-        jtf_fechaPrestamo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_fechaPrestamoActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 255));
         jLabel3.setText("fecha de entrega");
 
-        jtf_fechaEntrega.setEditable(false);
+        currentDate.setDateFormatString("yyyy/MM/dd HH:mm:ss");
+
+        jDateChooser2.setDateFormatString("yyyy/MM/dd HH/mm/ss");
+
+        lbl_idPrestador.setText("id prestador");
+
+        lbl_idEncargado.setText("id encargado");
+
+        lbl_idArticulo.setText("id articulo");
+
+        lbl_estatus.setText("estatus");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -113,15 +128,21 @@ public class PanelPrestamo extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jtf_inePrestador)
                             .addComponent(jtf_claveEncargado)
-                            .addComponent(jtf_claveArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                            .addComponent(jtf_fechaPrestamo)
-                            .addComponent(jtf_fechaEntrega)))
+                            .addComponent(jtf_claveArticulo)
+                            .addComponent(currentDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbl_idPrestador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbl_idEncargado, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(lbl_idArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbl_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jb_agregar)
                         .addGap(27, 27, 27)
                         .addComponent(jb_cancelar)))
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,23 +150,28 @@ public class PanelPrestamo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtf_inePrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(lbl_idPrestador))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jtf_claveEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtf_claveEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbl_idEncargado)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jtf_claveArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_claveArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_idArticulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jtf_fechaPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(currentDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_estatus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jtf_fechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_agregar)
@@ -186,23 +212,102 @@ public class PanelPrestamo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void buscarArticulo()
+    {
+        try{
+            PreparedStatement preparadorSentencia;
+            Connection conn = conexion.getConnection();
+            int ine = Integer.parseInt(jtf_inePrestador.getText());
+            System.out.println(ine);
+            preparadorSentencia=conn.prepareStatement("SELECT id FROM prestador where ine=?");
+            preparadorSentencia.setInt(1,ine);
+            preparadorSentencia.setMaxRows(1);            
+            preparadorSentencia.execute();
+            ResultSet result = preparadorSentencia.getResultSet();            
+            if(result.first()){
+                System.out.println(result.getString("id"));
+                lbl_idPrestador.setText(result.getString("id"));
+            }
+            else{
+                lbl_idPrestador.setText("no existe id prestador");
+            }
+            int claveEncargado= Integer.parseInt(jtf_claveEncargado.getText());
+            preparadorSentencia= conn.prepareStatement("SELECT id FROM encargado where clave=?");
+            preparadorSentencia.setInt(1,claveEncargado);
+            preparadorSentencia.setMaxRows(1);
+            preparadorSentencia.execute();
+            result= preparadorSentencia.getResultSet();
+            if(result.first()){
+                System.out.println(result.getString("id"));
+                lbl_idEncargado.setText(result.getString("id"));
+            }
+            else{
+                lbl_idEncargado.setText("no existe id del encargado");
+            }
+            String claveArticulo = jtf_claveArticulo.getText();
+            preparadorSentencia= conn.prepareStatement("SELECT id, estatus FROM articulo WHERE clave=?");
+            preparadorSentencia.setString(1,claveArticulo);
+            preparadorSentencia.setMaxRows(1);
+            preparadorSentencia.execute();
+            result = preparadorSentencia.getResultSet();
+            if(result.first()){
+                System.out.println(result.getString("id"));
+                lbl_idArticulo.setText(result.getString("id"));
+                lbl_estatus.setText(result.getString("estatus"));
+            }
+            else{
+                lbl_idArticulo.setText("no existe id de articulo");
+                lbl_estatus.setText("");
+            }
+            
+        }catch(Exception e)
+        {
+            System.out.println("error en el select"+e);
+        }
+    }
+    
+    public void insertarTodosLosCampos()
+    {
+         try{
+       conexion2=conexion.getConnection();
+       preparadorSentencia=conexion2.prepareStatement("INSERT INTO prestamo(inePrestador,claveEncargado,claveArticulo,fechaPrestamo,fechaEntrega)values(?,?,?,?,?)");
+       preparadorSentencia.setInt(1,Integer.parseInt(jtf_inePrestador.getText()));
+       preparadorSentencia.setInt(2,Integer.parseInt(jtf_claveEncargado.getText()));
+       preparadorSentencia.setInt(3,Integer.parseInt(jtf_claveArticulo.getText()));
+       preparadorSentencia.setString(4,((JTextField)currentDate.getDateEditor().getUiComponent()).getText());
+       preparadorSentencia.setString(5,((JTextField)currentDate.getDateEditor().getUiComponent()).getText());
+       preparadorSentencia.execute();
+       }catch(Exception e){
+       System.out.println("erro al insertar los datos"+e);           
+       }
+    }    
+    public void calcularFechaYHoraActual()
+    {
+        fecha = new Date();
+        currentDate.setDate(fecha);
+        
+    }    
+    public void calcularFechaYHoraDeEntrega()
+    {
+        
+    }        
+    public void obtenerEstatusDeArticulo()
+    {
+          
+    }
     private void jtf_inePrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_inePrestadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_inePrestadorActionPerformed
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-      String MatriculaPrestador= jtf_inePrestador.getText();
-      String MatriculaEncargado= jtf_claveEncargado.getText();
-      
+    calcularFechaYHoraActual();
+    /*insertarTodosLosCampos();*/
+    buscarArticulo();
     }//GEN-LAST:event_jb_agregarActionPerformed
 
     private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_claveArticuloActionPerformed
-
-    private void jtf_fechaPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_fechaPrestamoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_fechaPrestamoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,6 +345,8 @@ public class PanelPrestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser currentDate;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -252,8 +359,10 @@ public class PanelPrestamo extends javax.swing.JFrame {
     private javax.swing.JButton jb_cancelar;
     private javax.swing.JTextField jtf_claveArticulo;
     private javax.swing.JTextField jtf_claveEncargado;
-    private javax.swing.JTextField jtf_fechaEntrega;
-    private javax.swing.JTextField jtf_fechaPrestamo;
     private javax.swing.JTextField jtf_inePrestador;
+    private javax.swing.JLabel lbl_estatus;
+    private javax.swing.JLabel lbl_idArticulo;
+    private javax.swing.JLabel lbl_idEncargado;
+    private javax.swing.JLabel lbl_idPrestador;
     // End of variables declaration//GEN-END:variables
 }
