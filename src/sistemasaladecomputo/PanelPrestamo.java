@@ -17,18 +17,17 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jtf_matriculaPrestador = new javax.swing.JTextField();
+        jtf_inePrestador = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jtf_matriculaEncargado = new javax.swing.JTextField();
+        jtf_claveEncargado = new javax.swing.JTextField();
         jb_agregar = new javax.swing.JButton();
         jb_cancelar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jtf_claveArticulo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jtf_fechaPrestamo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jtf_fechaEntrega = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,9 +44,9 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(204, 204, 255));
         jLabel5.setText("INE Prestador");
 
-        jtf_matriculaPrestador.addActionListener(new java.awt.event.ActionListener() {
+        jtf_inePrestador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_matriculaPrestadorActionPerformed(evt);
+                jtf_inePrestadorActionPerformed(evt);
             }
         });
 
@@ -68,16 +67,9 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(204, 204, 255));
         jLabel7.setText("clave articulo");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtf_claveArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jtf_claveArticuloActionPerformed(evt);
             }
         });
 
@@ -85,10 +77,10 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(204, 204, 255));
         jLabel2.setText("fecha de prestamo");
 
-        jTextField2.setEditable(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jtf_fechaPrestamo.setEditable(false);
+        jtf_fechaPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jtf_fechaPrestamoActionPerformed(evt);
             }
         });
 
@@ -96,7 +88,7 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(204, 204, 255));
         jLabel3.setText("fecha de entrega");
 
-        jTextField3.setEditable(false);
+        jtf_fechaEntrega.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -119,19 +111,16 @@ public class PanelPrestamo extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtf_matriculaPrestador)
-                            .addComponent(jtf_matriculaEncargado)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)))
+                            .addComponent(jtf_inePrestador)
+                            .addComponent(jtf_claveEncargado)
+                            .addComponent(jtf_claveArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                            .addComponent(jtf_fechaPrestamo)
+                            .addComponent(jtf_fechaEntrega)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jb_agregar)
                         .addGap(27, 27, 27)
-                        .addComponent(jb_cancelar))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jButton1)))
+                        .addComponent(jb_cancelar)))
                 .addContainerGap(206, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -139,31 +128,29 @@ public class PanelPrestamo extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtf_matriculaPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_inePrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jtf_matriculaEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_claveEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_claveArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_fechaPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_fechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_agregar)
                     .addComponent(jb_cancelar))
-                .addGap(56, 56, 56)
-                .addComponent(jButton1)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -199,28 +186,23 @@ public class PanelPrestamo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtf_matriculaPrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_matriculaPrestadorActionPerformed
+    private void jtf_inePrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_inePrestadorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_matriculaPrestadorActionPerformed
+    }//GEN-LAST:event_jtf_inePrestadorActionPerformed
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-      String MatriculaPrestador= jtf_matriculaPrestador.getText();
-      String MatriculaEncargado= jtf_matriculaEncargado.getText();
+      String MatriculaPrestador= jtf_inePrestador.getText();
+      String MatriculaEncargado= jtf_claveEncargado.getText();
       
     }//GEN-LAST:event_jb_agregarActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jtf_claveArticuloActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       /* conexion= new conectar();
-        Connection conexion2=conexion.getConnection();*/
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jtf_fechaPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_fechaPrestamoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jtf_fechaPrestamoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,7 +240,6 @@ public class PanelPrestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -267,12 +248,12 @@ public class PanelPrestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton jb_agregar;
     private javax.swing.JButton jb_cancelar;
-    private javax.swing.JTextField jtf_matriculaEncargado;
-    private javax.swing.JTextField jtf_matriculaPrestador;
+    private javax.swing.JTextField jtf_claveArticulo;
+    private javax.swing.JTextField jtf_claveEncargado;
+    private javax.swing.JTextField jtf_fechaEntrega;
+    private javax.swing.JTextField jtf_fechaPrestamo;
+    private javax.swing.JTextField jtf_inePrestador;
     // End of variables declaration//GEN-END:variables
 }
