@@ -298,16 +298,29 @@ public class PanelPrestamo extends javax.swing.JFrame {
             throw new Exception(e.getMessage());
         }
     }
+    public void actualizarEstatusDeArticulo(int id) throws Exception
+    {
+        try{
+            conexion2= conexion.getConnection();
+            preparadorSentencia=conexion2.prepareStatement("UPDATE articulo SET estatus ='prestado' WHERE id=?");
+            preparadorSentencia.setInt(1,id);
+            preparadorSentencia.execute();
+        }catch (Exception e)
+        {
+            throw new Exception("error al actualizar estatus del articulo");
+        }
+    }
 
     public void insertarTodosLosCampos() {
         try {
             conexion2 = conexion.getConnection();
-            preparadorSentencia = conexion2.prepareStatement("INSERT INTO prestamo(inePrestador,claveEncargado,claveArticulo,fechaPrestamo,fechaEntrega)values(?,?,?,?,?)");
+            preparadorSentencia = conexion2.prepareStatement("INSERT INTO prestamo(inePrestador,claveEncargado,claveArticulo,fechaPrestamo,fechaEntrega,estatus)values(?,?,?,?,?,?)");
             preparadorSentencia.setInt(1, Integer.parseInt(lbl_idPrestador.getText()));
             preparadorSentencia.setInt(2, Integer.parseInt(lbl_idEncargado.getText()));
             preparadorSentencia.setInt(3, Integer.parseInt(lbl_idArticulo.getText()));
             preparadorSentencia.setString(4, ((JTextField) currentDate.getDateEditor().getUiComponent()).getText());
             preparadorSentencia.setString(5, ((JTextField) dateFinal.getDateEditor().getUiComponent()).getText());
+            preparadorSentencia.setString(6,"prestado");
             preparadorSentencia.execute();
         } catch (Exception e) {
             System.out.println("erro al insertar los datos" + e);
@@ -345,9 +358,10 @@ public class PanelPrestamo extends javax.swing.JFrame {
     }
 
     public void obtenerEstatusDeArticulo() throws Exception {
-        if(lbl_estatus.getText()!="disponible")
+        String estatus=lbl_estatus.getText();
+        if(!estatus.equals("disponible"))
         {
-            throw new Exception("el articulo ya fue prestado");
+            throw new Exception("el articulo no esta disponible");
         }
     }
     private void jtf_inePrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_inePrestadorActionPerformed
@@ -360,7 +374,10 @@ public class PanelPrestamo extends javax.swing.JFrame {
         buscarArticulo();
         obtenerEstatusDeArticulo();
         obtenerFechaCantidadTipo();
-        /*insertarTodosLosCampos();*/
+        insertarTodosLosCampos();
+        int id= Integer.parseInt(lbl_idArticulo.getText());
+        actualizarEstatusDeArticulo(id);
+        JOptionPane.showMessageDialog(null,"Se realizo el prestamo exitosamente");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
