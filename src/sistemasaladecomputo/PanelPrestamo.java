@@ -1,4 +1,5 @@
 package sistemasaladecomputo;
+
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.PreparedStatement;
@@ -8,17 +9,21 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
 public class PanelPrestamo extends javax.swing.JFrame {
+
     conectar conexion = new conectar();
     Connection conexion2;
     PreparedStatement preparadorSentencia;
     Date fecha;
-    
-     public PanelPrestamo() {
+
+    public PanelPrestamo() {
         initComponents();
     }
-     @SuppressWarnings("unchecked")
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -78,6 +83,11 @@ public class PanelPrestamo extends javax.swing.JFrame {
         });
 
         jb_cancelar.setText("cancelar");
+        jb_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_cancelarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(204, 204, 255));
@@ -235,128 +245,137 @@ public class PanelPrestamo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void buscarArticulo()
-    {
-        try{
+    public void buscarArticulo() throws Exception {
+        try {
             PreparedStatement preparadorSentencia;
             Connection conn = conexion.getConnection();
             int ine = Integer.parseInt(jtf_inePrestador.getText());
             System.out.println(ine);
-            preparadorSentencia=conn.prepareStatement("SELECT id FROM prestador where ine=?");
-            preparadorSentencia.setInt(1,ine);
-            preparadorSentencia.setMaxRows(1);            
-            preparadorSentencia.execute();
-            ResultSet result = preparadorSentencia.getResultSet();            
-            if(result.first()){
-                System.out.println(result.getString("id"));
-                lbl_idPrestador.setText(result.getString("id"));
-            }
-            else{
-                lbl_idPrestador.setText("no existe id prestador");
-            }
-            int claveEncargado= Integer.parseInt(jtf_claveEncargado.getText());
-            preparadorSentencia= conn.prepareStatement("SELECT id FROM encargado where clave=?");
-            preparadorSentencia.setInt(1,claveEncargado);
+            preparadorSentencia = conn.prepareStatement("SELECT id FROM prestador where ine=?");
+            preparadorSentencia.setInt(1, ine);
             preparadorSentencia.setMaxRows(1);
             preparadorSentencia.execute();
-            result= preparadorSentencia.getResultSet();
-            if(result.first()){
+            ResultSet result = preparadorSentencia.getResultSet();
+            if (result.first()) {
                 System.out.println(result.getString("id"));
-                lbl_idEncargado.setText(result.getString("id"));
+                lbl_idPrestador.setText(result.getString("id"));
+            } else {
+                lbl_idPrestador.setText("no existe id prestador");
+                throw new Exception("No fue posible encontrar al prestador");
             }
-            else{
-                lbl_idEncargado.setText("no existe id del encargado");
-            }
-            String claveArticulo = jtf_claveArticulo.getText();
-            preparadorSentencia= conn.prepareStatement("SELECT articulo.id, articulo.estatus,articulo.idTipoArticulo,tipoArticulo.tiempo,tipoArticulo.cantidad FROM articulo INNER JOIN tipoArticulo ON articulo.idTipoArticulo=tipoArticulo.id WHERE articulo.clave=?");
-            preparadorSentencia.setString(1,claveArticulo);
+            int claveEncargado = Integer.parseInt(jtf_claveEncargado.getText());
+            preparadorSentencia = conn.prepareStatement("SELECT id FROM encargado where clave=?");
+            preparadorSentencia.setInt(1, claveEncargado);
             preparadorSentencia.setMaxRows(1);
             preparadorSentencia.execute();
             result = preparadorSentencia.getResultSet();
-            if(result.first()){          
+            if (result.first()) {
+                System.out.println(result.getString("id"));
+                lbl_idEncargado.setText(result.getString("id"));
+            } else {
+                lbl_idEncargado.setText("no existe id del encargado");
+                throw new Exception("No fue posible encontrar al encargado");
+            }
+            String claveArticulo = jtf_claveArticulo.getText();
+            preparadorSentencia = conn.prepareStatement("SELECT articulo.id, articulo.estatus,articulo.idTipoArticulo,tipoArticulo.tiempo,tipoArticulo.cantidad FROM articulo INNER JOIN tipoArticulo ON articulo.idTipoArticulo=tipoArticulo.id WHERE articulo.clave=?");
+            preparadorSentencia.setString(1, claveArticulo);
+            preparadorSentencia.setMaxRows(1);
+            preparadorSentencia.execute();
+            result = preparadorSentencia.getResultSet();
+            if (result.first()) {
                 lbl_idArticulo.setText(result.getString("articulo.id"));
                 lbl_estatus.setText(result.getString("articulo.estatus"));
                 lbl_tipoArticulo.setText(result.getString("articulo.idTipoArticulo"));
                 lbl_tiempo.setText(result.getString("tipoArticulo.tiempo"));
                 lbl_cantidad.setText(result.getString("tipoArticulo.cantidad"));
-            }
-            else{
+            } else {
                 lbl_idArticulo.setText("no existe id de articulo");
                 lbl_estatus.setText("");
                 lbl_tipoArticulo.setText("");
+                throw new Exception("No fue posible encontrar el articulo");
             }
-            
-        }catch(Exception e)
-        {
-            System.out.println("error en el select"+e);
+        }catch(Exception e){
+            throw new Exception(e.getMessage());
         }
     }
-    
-    public void insertarTodosLosCampos()
-    {
-         try{
-       conexion2=conexion.getConnection();
-       preparadorSentencia=conexion2.prepareStatement("INSERT INTO prestamo(inePrestador,claveEncargado,claveArticulo,fechaPrestamo,fechaEntrega)values(?,?,?,?,?)");
-       preparadorSentencia.setInt(1,Integer.parseInt(lbl_idPrestador.getText()));
-       preparadorSentencia.setInt(2,Integer.parseInt(lbl_idEncargado.getText()));
-       preparadorSentencia.setInt(3,Integer.parseInt(lbl_idArticulo.getText()));
-       preparadorSentencia.setString(4,((JTextField)currentDate.getDateEditor().getUiComponent()).getText());
-       preparadorSentencia.setString(5,((JTextField)dateFinal.getDateEditor().getUiComponent()).getText());
-       preparadorSentencia.execute();
-       }catch(Exception e){
-       System.out.println("erro al insertar los datos"+e);           
-       }
-    }    
-    public void calcularFechaYHoraActual()
-    {
+
+    public void insertarTodosLosCampos() {
+        try {
+            conexion2 = conexion.getConnection();
+            preparadorSentencia = conexion2.prepareStatement("INSERT INTO prestamo(inePrestador,claveEncargado,claveArticulo,fechaPrestamo,fechaEntrega)values(?,?,?,?,?)");
+            preparadorSentencia.setInt(1, Integer.parseInt(lbl_idPrestador.getText()));
+            preparadorSentencia.setInt(2, Integer.parseInt(lbl_idEncargado.getText()));
+            preparadorSentencia.setInt(3, Integer.parseInt(lbl_idArticulo.getText()));
+            preparadorSentencia.setString(4, ((JTextField) currentDate.getDateEditor().getUiComponent()).getText());
+            preparadorSentencia.setString(5, ((JTextField) dateFinal.getDateEditor().getUiComponent()).getText());
+            preparadorSentencia.execute();
+        } catch (Exception e) {
+            System.out.println("erro al insertar los datos" + e);
+        }
+    }
+
+    public void calcularFechaYHoraActual() {
         fecha = new Date();
         currentDate.setDate(fecha);
-        
-    }  
-    public void obtenerFechaCantidadTipo()
-    {
+
+    }
+
+    public void obtenerFechaCantidadTipo() {
         int cantidad;
         cantidad = Integer.parseInt(lbl_cantidad.getText());
         String tipo;
         tipo = lbl_tiempo.getText();
         Date fechaEntrega;
-        fechaEntrega=calcularFechaYHoraDeEntrega(fecha, cantidad, tipo);
+        fechaEntrega = calcularFechaYHoraDeEntrega(fecha, cantidad, tipo);
         dateFinal.setDate(fechaEntrega);
     }
-    
-    public Date calcularFechaYHoraDeEntrega(Date fechaInicio, int cantidad, String tipo)
-    {
-        Calendar calendar= Calendar.getInstance();
+
+    public Date calcularFechaYHoraDeEntrega(Date fechaInicio, int cantidad, String tipo) {
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaInicio);
-        switch(tipo)
-        {
+        switch (tipo) {
             case "hora":
-                calendar.add(Calendar.HOUR,cantidad);
+                calendar.add(Calendar.HOUR, cantidad);
                 break;
             case "minuto":
-                calendar.add(Calendar.MINUTE,cantidad);
+                calendar.add(Calendar.MINUTE, cantidad);
                 break;
         }
         return calendar.getTime();
-    }        
-    public void obtenerEstatusDeArticulo()
-    {
-          
+    }
+
+    public void obtenerEstatusDeArticulo() throws Exception {
+        if(lbl_estatus.getText()!="disponible")
+        {
+            throw new Exception("el articulo ya fue prestado");
+        }
     }
     private void jtf_inePrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_inePrestadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_inePrestadorActionPerformed
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-    calcularFechaYHoraActual();
-    buscarArticulo();
-    obtenerFechaCantidadTipo();
-    insertarTodosLosCampos();
+        try{
+        calcularFechaYHoraActual();
+        buscarArticulo();
+        obtenerEstatusDeArticulo();
+        obtenerFechaCantidadTipo();
+        /*insertarTodosLosCampos();*/
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jb_agregarActionPerformed
 
     private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_claveArticuloActionPerformed
+
+    private void jb_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_cancelarActionPerformed
+        PanelPrincipal principal = new PanelPrincipal();
+        principal.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jb_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
