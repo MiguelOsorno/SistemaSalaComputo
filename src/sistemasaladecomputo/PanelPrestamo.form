@@ -113,7 +113,7 @@
                                   <Component id="jtf_claveEncargado" max="32767" attributes="0"/>
                                   <Component id="jtf_claveArticulo" max="32767" attributes="0"/>
                                   <Component id="currentDate" max="32767" attributes="0"/>
-                                  <Component id="jDateChooser2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="dateFinal" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -121,6 +121,14 @@
                                   <Component id="lbl_idEncargado" pref="120" max="32767" attributes="0"/>
                                   <Component id="lbl_idArticulo" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbl_estatus" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lbl_tiempo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbl_tipoArticulo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbl_cantidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -166,14 +174,19 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jDateChooser2" min="-2" max="-2" attributes="0"/>
+                          <Component id="dateFinal" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="lbl_tipoArticulo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jb_agregar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jb_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_tiempo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="145" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lbl_cantidad" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="120" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -262,11 +275,13 @@
             <Component class="com.toedter.calendar.JDateChooser" name="currentDate">
               <Properties>
                 <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd HH:mm:ss"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
+            <Component class="com.toedter.calendar.JDateChooser" name="dateFinal">
               <Properties>
-                <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd HH/mm/ss"/>
+                <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd HH:mm:ss"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_idPrestador">
@@ -287,6 +302,21 @@
             <Component class="javax.swing.JLabel" name="lbl_estatus">
               <Properties>
                 <Property name="text" type="java.lang.String" value="estatus"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_tipoArticulo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="tipoArticulo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_tiempo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="tiempo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_cantidad">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="cantidad"/>
               </Properties>
             </Component>
           </SubComponents>
