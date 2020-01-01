@@ -22,7 +22,7 @@ public class DateCellRenderer extends DefaultTableCellRenderer {
 
     @Override
     public void setValue(Object value) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = null;

@@ -34,7 +34,7 @@ public class PrestamosPendientes extends javax.swing.JFrame {
             DefaultTableModel tabla = new DefaultTableModel();
             jt_Tabla.setModel(tabla);
             conexion2= conexion.getConnection();
-            prepararSentencia= conexion2.prepareStatement("SELECT inePrestador,claveArticulo,fechaPrestamo,fechaEntrega,estatus FROM prestamo WHERE estatus=?");
+            prepararSentencia= conexion2.prepareStatement("SELECT prestador.ine,articulo.clave,prestamo.fechaPrestamo,prestamo.fechaEntrega,prestamo.estatus FROM ((prestamo INNER JOIN prestador ON prestamo.inePrestador= prestador.id) INNER JOIN articulo ON prestamo.claveArticulo= articulo.id)  WHERE prestamo.estatus=?");
             prepararSentencia.setString(1,"prestado");
             prepararSentencia.execute();
             ResultSet resultado= prepararSentencia.getResultSet();
@@ -90,6 +90,7 @@ public class PrestamosPendientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_Tabla = new javax.swing.JTable();
         jb_consultar = new javax.swing.JButton();
+        jb_regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +124,13 @@ public class PrestamosPendientes extends javax.swing.JFrame {
             }
         });
 
+        jb_regresar.setText("regresar");
+        jb_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_regresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -130,20 +138,24 @@ public class PrestamosPendientes extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jb_consultar)
-                .addContainerGap(492, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jb_regresar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jb_consultar)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb_consultar)
+                    .addComponent(jb_regresar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -177,11 +189,18 @@ public class PrestamosPendientes extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_consultarActionPerformed
         obtenerTodoLosPrestamosPendientes();
     }//GEN-LAST:event_jb_consultarActionPerformed
+
+    private void jb_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_regresarActionPerformed
+        PanelPrincipal principal = new PanelPrincipal();
+        principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb_regresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,6 +243,7 @@ public class PrestamosPendientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jb_consultar;
+    private javax.swing.JButton jb_regresar;
     private javax.swing.JTable jt_Tabla;
     // End of variables declaration//GEN-END:variables
 

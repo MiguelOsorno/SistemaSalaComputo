@@ -9,7 +9,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -90,6 +96,20 @@ public class PanelDevolucion extends javax.swing.JFrame {
              throw new Exception(e.getMessage());
         }
     }
+    public String darFormatoFecha(String fecha)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        Date date = null;
+        try {
+            date = inputFormat.parse(fecha);
+        } catch (ParseException ex) {
+            Logger.getLogger(DateCellRenderer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+         return sdf.format(date);
+    }
     public void obtenerRegistroDePrestamo(int id) throws Exception
     {
         try{
@@ -104,8 +124,8 @@ public class PanelDevolucion extends javax.swing.JFrame {
             {
                 lbl_idPrestamo.setText(resultado.getString("prestamo.id"));
                 lbl_nombrePrestador.setText(resultado.getString("prestador.nombre"));
-                lbl_fechaPrestamo.setText(resultado.getString("prestamo.fechaPrestamo"));
-                lbl_fechaEntrega.setText(resultado.getString("prestamo.fechaEntrega"));
+                lbl_fechaPrestamo.setText(darFormatoFecha(resultado.getString("prestamo.fechaPrestamo")));
+                lbl_fechaEntrega.setText(darFormatoFecha (resultado.getString("prestamo.fechaEntrega")));
                 lbl_estatusDelPrestamo.setText(resultado.getString("prestamo.estatus"));
             }
             else{
