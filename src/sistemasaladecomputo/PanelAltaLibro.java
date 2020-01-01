@@ -31,19 +31,24 @@ public class PanelAltaLibro extends javax.swing.JFrame {
     public PanelAltaLibro() {
         initComponents();
         this.obtenerTodosLosLibros();
+    }   
+    public void limpiar()
+    {
+        jtf_claveLibro.setText("");
+        jtf_titulo.setText("");
+        jtf_autor.setText("");
     }
-
     public Boolean obtenerAccionARealizar() {
         boolean accion = lbl_accion.getText().equals("Nuevo");
 
         return accion;
     }
 
-    public void ponerDatosEnCajasParaActualizar(){
+    public void ponerDatosEnCajasParaActualizar() throws Exception{
         int fila = jt_tabla.getSelectedRow();
         if(fila==-1)
         {
-            JOptionPane.showMessageDialog(null,"seleccione un elemento de la tabla");
+           throw  new Exception("seleccione un elemento de la tabla");
         }
         else{            
             String clave= jt_tabla.getValueAt(fila,0).toString();
@@ -84,7 +89,22 @@ public class PanelAltaLibro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-
+    public void actualizarLibro() throws Exception
+    {
+        try{
+        String clave=jtf_claveLibro.getText();
+        String titulo= jtf_titulo.getText();
+        String autor= jtf_autor.getText();
+        preparadorSentencia= conexion2.prepareStatement("UPDATE articulo SET descripcion=? WHERE clave=?");
+        preparadorSentencia.setString(1,titulo+"|"+autor+"|");
+        preparadorSentencia.setString(2,clave);        
+        preparadorSentencia.execute();
+        }catch(Exception e)
+        {
+              throw new Exception("error al agregar el libro");
+        }
+       
+    }
     public void ingresarNuevoLibro() throws SQLException, Exception {
         try {
             String clave = jtf_claveLibro.getText();
@@ -170,14 +190,14 @@ public class PanelAltaLibro extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Autor");
 
-        jb_agregarLibro.setText("guardar");
+        jb_agregarLibro.setText("Guardar");
         jb_agregarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_agregarLibroActionPerformed(evt);
             }
         });
 
-        jb_regresar.setText("regresar");
+        jb_regresar.setText("Regresar");
         jb_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_regresarActionPerformed(evt);
@@ -207,6 +227,11 @@ public class PanelAltaLibro extends javax.swing.JFrame {
         lbl_accion.setText("Nuevo");
 
         jb_nuevo.setText("Nuevo");
+        jb_nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_nuevoActionPerformed(evt);
+            }
+        });
 
         jb_modificar.setText("Modificar");
         jb_modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -344,7 +369,17 @@ public class PanelAltaLibro extends javax.swing.JFrame {
         else{
             if (jtf_claveLibro.getText().isEmpty() || jtf_titulo.getText().isEmpty() || jtf_autor.getText().isEmpty())
             {
-                
+                 JOptionPane.showMessageDialog(null, "no dejar campos vacios");
+            }
+            else{
+                try{
+                    actualizarLibro();
+                    JOptionPane.showMessageDialog(null,"se actulizo el libro correctamente");
+                    obtenerTodosLosLibros();
+                }catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
             }
         }
     }//GEN-LAST:event_jb_agregarLibroActionPerformed
@@ -360,8 +395,22 @@ public class PanelAltaLibro extends javax.swing.JFrame {
     }//GEN-LAST:event_jt_tablaMouseClicked
 
     private void jb_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modificarActionPerformed
-       ponerDatosEnCajasParaActualizar();
+       try{
+            ponerDatosEnCajasParaActualizar();
+            lbl_accion.setText("Modificar");
+            jtf_claveLibro.setEnabled(false);
+       } catch(Exception e)
+       {
+           JOptionPane.showMessageDialog(null,e.getMessage());
+       }
+        
     }//GEN-LAST:event_jb_modificarActionPerformed
+
+    private void jb_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_nuevoActionPerformed
+        lbl_accion.setText("Nuevo");
+        limpiar();
+        jtf_claveLibro.setEnabled(true);
+    }//GEN-LAST:event_jb_nuevoActionPerformed
 
     /**
      * @param args the command line arguments
