@@ -40,6 +40,7 @@ CREATE TABLE prestamo(
     claveArticulo INT NOT NULL,
     fechaPrestamo DATETIME NOT NULL,
     fechaEntrega DATETIME NOT NULL,
+    estatus VARCHAR(10) NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY(inePrestador) REFERENCES prestador(id),
     FOREIGN KEY(claveEncargado) REFERENCES encargado(id),
