@@ -110,6 +110,12 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("INE Prestador");
 
+        jtf_InePrestador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_InePrestadorKeyTyped(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre");
@@ -244,13 +250,19 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-      try{
-            verificarInePrestador();
-            ingresarNuevoPrestador();
-        }catch (Exception e)
+        if(jtf_InePrestador.getText().isEmpty() || jtf_nombre.getText().isEmpty() || jtf_apellido.getText().isEmpty() || jtf_direccion.getText().isEmpty() || jtf_telefono.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null,"No dejar campos vacios");
         }
+        else{
+             try{
+                verificarInePrestador();
+                ingresarNuevoPrestador();
+            }catch (Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }        
     }//GEN-LAST:event_jb_agregarActionPerformed
 
     private void jb_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_regresarActionPerformed
@@ -258,6 +270,15 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
         panelPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jb_regresarActionPerformed
+
+    private void jtf_InePrestadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_InePrestadorKeyTyped
+         char ine =evt.getKeyChar();
+        if(Character.isLetter(ine)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
+        }  
+    }//GEN-LAST:event_jtf_InePrestadorKeyTyped
 
     /**
      * @param args the command line arguments

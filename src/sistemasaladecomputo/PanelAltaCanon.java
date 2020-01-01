@@ -25,10 +25,10 @@ public class PanelAltaCanon extends javax.swing.JFrame {
     public PanelAltaCanon() {
         initComponents();
     }
-    public void ingresarNuevoCanon(String clave) throws Exception
+    public void ingresarNuevoCanon() throws Exception
     {
          try{
-          
+            String clave= jtf_claveCanon.getText();
             String color= jtf_color.getText();
             preparadorSentencia= conexion2.prepareStatement("INSERT INTO articulo(clave,estatus,descripcion,idTipoArticulo) VALUES(?,?,?,?)");
             preparadorSentencia.setString(1,clave);
@@ -55,10 +55,7 @@ public class PanelAltaCanon extends javax.swing.JFrame {
             if(resultado.first())
             {
                 throw new Exception("ya exite un articulo con esa clave");
-            }
-            else{
-                ingresarNuevoCanon(claveArticulo);
-            }
+            }           
         }catch(Exception e)
         {
             throw new Exception(e.getMessage());
@@ -192,12 +189,19 @@ public class PanelAltaCanon extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-         try{
-            verificarClaveCanon();
-        }catch (Exception e)
+        if(jtf_claveCanon.getText().isEmpty()|| jtf_color.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null,"No dejar campos vacios");
         }
+        else{
+             try{
+                verificarClaveCanon();
+                ingresarNuevoCanon();
+            }catch (Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }       
     }//GEN-LAST:event_jb_agregarActionPerformed
 
     private void jb_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_regresarActionPerformed

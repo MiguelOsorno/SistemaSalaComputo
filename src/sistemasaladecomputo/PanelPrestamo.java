@@ -71,10 +71,21 @@ public class PanelPrestamo extends javax.swing.JFrame {
                 jtf_inePrestadorActionPerformed(evt);
             }
         });
+        jtf_inePrestador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_inePrestadorKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 255));
         jLabel6.setText("clave Encargado");
+
+        jtf_claveEncargado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_claveEncargadoKeyTyped(evt);
+            }
+        });
 
         jb_agregar.setText("agregar");
         jb_agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +108,11 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jtf_claveArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtf_claveArticuloActionPerformed(evt);
+            }
+        });
+        jtf_claveArticulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_claveArticuloKeyTyped(evt);
             }
         });
 
@@ -378,18 +394,25 @@ public class PanelPrestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jtf_inePrestadorActionPerformed
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-        try{
-        calcularFechaYHoraActual();
-        buscarArticulo();
-        obtenerEstatusDeArticulo();
-        obtenerFechaCantidadTipo();
-        insertarTodosLosCampos();
-        int id= Integer.parseInt(lbl_idArticulo.getText());
-        actualizarEstatusDeArticulo(id);
-        JOptionPane.showMessageDialog(null,"Se realizo el prestamo exitosamente");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        if(jtf_inePrestador.getText().isEmpty() || jtf_claveEncargado.getText().isEmpty() || jtf_claveArticulo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"favor de no dejar campos vacios");
         }
+        else{
+            try{
+                calcularFechaYHoraActual();
+                buscarArticulo();
+                obtenerEstatusDeArticulo();
+                obtenerFechaCantidadTipo();
+                insertarTodosLosCampos();
+                int id= Integer.parseInt(lbl_idArticulo.getText());
+                actualizarEstatusDeArticulo(id);
+                JOptionPane.showMessageDialog(null,"Se realizo el prestamo exitosamente");
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+        }
+      
     }//GEN-LAST:event_jb_agregarActionPerformed
 
     private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
@@ -402,6 +425,28 @@ public class PanelPrestamo extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_jb_cancelarActionPerformed
+
+    private void jtf_inePrestadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_inePrestadorKeyTyped
+        char ine =evt.getKeyChar();
+        if(Character.isLetter(ine)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
+        }       
+    }//GEN-LAST:event_jtf_inePrestadorKeyTyped
+
+    private void jtf_claveEncargadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveEncargadoKeyTyped
+        char claveEncargado =evt.getKeyChar();
+        if(Character.isLetter(claveEncargado)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
+        } 
+    }//GEN-LAST:event_jtf_claveEncargadoKeyTyped
+
+    private void jtf_claveArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveArticuloKeyTyped
+            
+    }//GEN-LAST:event_jtf_claveArticuloKeyTyped
 
     /**
      * @param args the command line arguments

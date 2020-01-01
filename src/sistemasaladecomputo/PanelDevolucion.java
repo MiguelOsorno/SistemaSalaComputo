@@ -23,83 +23,80 @@ import javax.swing.JOptionPane;
  * @author Miguel
  */
 public class PanelDevolucion extends javax.swing.JFrame {
+
     conectar conexion = new conectar();
     Connection conexion2;
     PreparedStatement preparadorSentencia;
+
     public PanelDevolucion() {
         initComponents();
     }
-    public void activarBotonDevolver()
-    {
-        jb_devolver.setEnabled(true);                
+
+    public void activarBotonDevolver() {
+        jb_devolver.setEnabled(true);
     }
-    public void desactivarBotonDevolver()
-    {
-        jb_devolver.setEnabled(false);        
+
+    public void desactivarBotonDevolver() {
+        jb_devolver.setEnabled(false);
     }
-    public void establecerEstatusDeArticulo() throws Exception
-    {
-        try{
-            conexion2=conexion.getConnection();
-            int idArticulo= Integer.parseInt(lbl_idArticulo.getText());
-            preparadorSentencia= conexion2.prepareStatement("UPDATE articulo SET estatus=? WHERE id=?");
-            preparadorSentencia.setString(1,"disponible");
-            preparadorSentencia.setInt(2,idArticulo);
+
+    public void establecerEstatusDeArticulo() throws Exception {
+        try {
+            conexion2 = conexion.getConnection();
+            int idArticulo = Integer.parseInt(lbl_idArticulo.getText());
+            preparadorSentencia = conexion2.prepareStatement("UPDATE articulo SET estatus=? WHERE id=?");
+            preparadorSentencia.setString(1, "disponible");
+            preparadorSentencia.setInt(2, idArticulo);
             preparadorSentencia.execute();
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             throw new Exception("Error al establecer el estatus del articulo");
         }
     }
-    public void establecerEstatusDePrestamo() throws Exception
-    {
-        try{
-            conexion2= conexion.getConnection();
-            int idPrestamo= Integer.parseInt(lbl_idPrestamo.getText());
-            preparadorSentencia= conexion2.prepareStatement("UPDATE prestamo SET estatus=? WHERE id=?");
-            preparadorSentencia.setString(1,"devuelto");
-            preparadorSentencia.setInt(2,idPrestamo);
+
+    public void establecerEstatusDePrestamo() throws Exception {
+        try {
+            conexion2 = conexion.getConnection();
+            int idPrestamo = Integer.parseInt(lbl_idPrestamo.getText());
+            preparadorSentencia = conexion2.prepareStatement("UPDATE prestamo SET estatus=? WHERE id=?");
+            preparadorSentencia.setString(1, "devuelto");
+            preparadorSentencia.setInt(2, idPrestamo);
             preparadorSentencia.execute();
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             throw new Exception("Error al establecer el estatus del prestamo");
         }
     }
-    public void limpiarLabels()
-    {
+
+    public void limpiarLabels() {
         lbl_idArticulo.setText("-----------");
         lbl_idPrestamo.setText("-----------");
         lbl_nombrePrestador.setText("-----------");
         lbl_fechaPrestamo.setText("-----------");
         lbl_fechaEntrega.setText("-----------");
-        lbl_estatusDelPrestamo.setText("-----------");        
+        lbl_estatusDelPrestamo.setText("-----------");
     }
-    public void actualizarFormularioDespuesDeDevolver() throws Exception
-    {
-        try{
-            conexion2= conexion.getConnection();
-            int idPrestamo= Integer.parseInt(lbl_idPrestamo.getText());
-            preparadorSentencia= conexion2.prepareStatement("SELECT estatus FROM prestamo WHERE id=?");
-            preparadorSentencia.setInt(1,idPrestamo);
+
+    public void actualizarFormularioDespuesDeDevolver() throws Exception {
+        try {
+            conexion2 = conexion.getConnection();
+            int idPrestamo = Integer.parseInt(lbl_idPrestamo.getText());
+            preparadorSentencia = conexion2.prepareStatement("SELECT estatus FROM prestamo WHERE id=?");
+            preparadorSentencia.setInt(1, idPrestamo);
             preparadorSentencia.setMaxRows(1);
             preparadorSentencia.execute();
-            ResultSet resultado= preparadorSentencia.getResultSet();
-            if(resultado.first())
-            {
+            ResultSet resultado = preparadorSentencia.getResultSet();
+            if (resultado.first()) {
                 lbl_estatusDelPrestamo.setText(resultado.getString("estatus"));
+            } else {
+                throw new Exception("no se puedo actualizar el estatus del prestamo despues de devolverlo");
             }
-            else{
-                 throw new Exception("no se puedo actualizar el estatus del prestamo despues de devolverlo");
-            }
-        }catch(Exception e)
-        {
-             throw new Exception(e.getMessage());
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
         }
     }
-    public String darFormatoFecha(String fecha)
-    {
+
+    public String darFormatoFecha(String fecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        
+
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = null;
         try {
@@ -108,53 +105,47 @@ public class PanelDevolucion extends javax.swing.JFrame {
             Logger.getLogger(DateCellRenderer.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-         return sdf.format(date);
+        return sdf.format(date);
     }
-    public void obtenerRegistroDePrestamo(int id) throws Exception
-    {
-        try{
-            conexion2=conexion.getConnection();
-            preparadorSentencia= conexion2.prepareStatement("SELECT prestamo.id,prestador.nombre,prestamo.fechaPrestamo,prestamo.fechaEntrega,prestamo.estatus FROM prestamo INNER JOIN prestador ON prestamo.inePrestador=prestador.id WHERE prestamo.claveArticulo=? AND prestamo.estatus=?");
+
+    public void obtenerRegistroDePrestamo(int id) throws Exception {
+        try {
+            conexion2 = conexion.getConnection();
+            preparadorSentencia = conexion2.prepareStatement("SELECT prestamo.id,prestador.nombre,prestamo.fechaPrestamo,prestamo.fechaEntrega,prestamo.estatus FROM prestamo INNER JOIN prestador ON prestamo.inePrestador=prestador.id WHERE prestamo.claveArticulo=? AND prestamo.estatus=?");
             preparadorSentencia.setInt(1, id);
-            preparadorSentencia.setString(2,"prestado");
+            preparadorSentencia.setString(2, "prestado");
             preparadorSentencia.setMaxRows(1);
             preparadorSentencia.execute();
-            ResultSet resultado= preparadorSentencia.getResultSet();
-            if(resultado.first())
-            {
+            ResultSet resultado = preparadorSentencia.getResultSet();
+            if (resultado.first()) {
                 lbl_idPrestamo.setText(resultado.getString("prestamo.id"));
                 lbl_nombrePrestador.setText(resultado.getString("prestador.nombre"));
                 lbl_fechaPrestamo.setText(darFormatoFecha(resultado.getString("prestamo.fechaPrestamo")));
-                lbl_fechaEntrega.setText(darFormatoFecha (resultado.getString("prestamo.fechaEntrega")));
+                lbl_fechaEntrega.setText(darFormatoFecha(resultado.getString("prestamo.fechaEntrega")));
                 lbl_estatusDelPrestamo.setText(resultado.getString("prestamo.estatus"));
-            }
-            else{
+            } else {
                 throw new Exception("Este articulo no ha sido prestado");
             }
-        }catch(Exception e)
-        {
-             throw new Exception(e.getMessage());
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
         }
     }
-    
-    public void obtenerIdDeArticulo() throws Exception
-    {
-        try{
-             conexion2= conexion.getConnection();
-             String claveArticulo=jtf_claveArticulo.getText();
-             preparadorSentencia= conexion2.prepareStatement("SELECT id FROM articulo WHERE clave=?");
-             preparadorSentencia.setString(1,claveArticulo);
-             preparadorSentencia.setMaxRows(1);
-             preparadorSentencia.execute();
-             ResultSet resultado = preparadorSentencia.getResultSet();
-             if(resultado.first())
-             {
-                 lbl_idArticulo.setText(resultado.getString("id"));
-             }
-             else{
-                 throw new Exception("No fue posible encontrar el articulo");
-             }
-        }catch(Exception e){
+
+    public void obtenerIdDeArticulo() throws Exception {
+        try {
+            conexion2 = conexion.getConnection();
+            String claveArticulo = jtf_claveArticulo.getText();
+            preparadorSentencia = conexion2.prepareStatement("SELECT id FROM articulo WHERE clave=?");
+            preparadorSentencia.setString(1, claveArticulo);
+            preparadorSentencia.setMaxRows(1);
+            preparadorSentencia.execute();
+            ResultSet resultado = preparadorSentencia.getResultSet();
+            if (resultado.first()) {
+                lbl_idArticulo.setText(resultado.getString("id"));
+            } else {
+                throw new Exception("No fue posible encontrar el articulo");
+            }
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
@@ -404,14 +395,13 @@ public class PanelDevolucion extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_regresarAInicioActionPerformed
 
     private void jb_devolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_devolverActionPerformed
-        try{
+        try {
             establecerEstatusDePrestamo();
             establecerEstatusDeArticulo();
-            JOptionPane.showMessageDialog(null,"Se devolvio el articulo exitosamente");
+            JOptionPane.showMessageDialog(null, "Se devolvio el articulo exitosamente");
             desactivarBotonDevolver();
             actualizarFormularioDespuesDeDevolver();
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jb_devolverActionPerformed
@@ -428,16 +418,19 @@ public class PanelDevolucion extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_devolverMouseClicked
 
     private void jb_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_buscarActionPerformed
-        try{
-            limpiarLabels();
-            obtenerIdDeArticulo();
-            int idArticulo= Integer.parseInt(lbl_idArticulo.getText());
-            obtenerRegistroDePrestamo(idArticulo);
-            activarBotonDevolver();
-        }catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        if (jtf_claveArticulo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "ingrese la clave del articulo");
+        } else {
+            try {
+                limpiarLabels();
+                obtenerIdDeArticulo();
+                int idArticulo = Integer.parseInt(lbl_idArticulo.getText());
+                obtenerRegistroDePrestamo(idArticulo);
+                activarBotonDevolver();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }       
     }//GEN-LAST:event_jb_buscarActionPerformed
 
     private void jb_buscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_buscarMouseClicked

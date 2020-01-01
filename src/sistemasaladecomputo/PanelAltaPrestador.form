@@ -173,6 +173,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtf_InePrestador">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtf_InePrestadorKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>

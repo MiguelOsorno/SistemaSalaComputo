@@ -25,9 +25,10 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
     public PanelAltaComputadora() {
         initComponents();
     }
-    public void ingresarNuevaComputadora(String clave) throws Exception
+    public void ingresarNuevaComputadora() throws Exception
     {
           try{
+            String clave= jtf_clavePC.getText();
             String marca= jtf_marca.getText();
             String color= jtf_color.getText();
             preparadorSentencia= conexion2.prepareStatement("INSERT INTO articulo(clave,estatus,descripcion,idTipoArticulo) VALUES(?,?,?,?)");
@@ -55,10 +56,7 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
             if(resultado.first())
             {
                 throw new Exception("ya exite un articulo con esa clave");
-            }
-            else{
-                ingresarNuevaComputadora(claveArticulo);
-            }
+            }            
         }catch(Exception e)
         {
             throw new Exception(e.getMessage());
@@ -207,12 +205,19 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-         try{
-            verificarClaveComputadora();
-        }catch (Exception e)
+        if(jtf_clavePC.getText().isEmpty()|| jtf_marca.getText().isEmpty()|| jtf_color.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null,"No dejar campos vacios");
         }
+        else{
+            try{
+                verificarClaveComputadora();
+                ingresarNuevaComputadora();
+            }catch (Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }       
     }//GEN-LAST:event_jb_agregarActionPerformed
 
     private void jb_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_regresarActionPerformed
