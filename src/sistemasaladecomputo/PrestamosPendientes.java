@@ -93,6 +93,7 @@ public class PrestamosPendientes extends javax.swing.JFrame {
         jb_regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
