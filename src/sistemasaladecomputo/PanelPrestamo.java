@@ -82,7 +82,7 @@ public class PanelPrestamo extends javax.swing.JFrame {
             }
         });
 
-        jb_cancelar.setText("cancelar");
+        jb_cancelar.setText("regresar");
         jb_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_cancelarActionPerformed(evt);

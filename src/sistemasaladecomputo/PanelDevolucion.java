@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +23,42 @@ public class PanelDevolucion extends javax.swing.JFrame {
     public PanelDevolucion() {
         initComponents();
     }
+    public void activarBotonDevolver()
+    {
+        jb_devolver.setEnabled(true);                
+    }
+    public void desactivarBotonDevolver()
+    {
+        jb_devolver.setEnabled(false);        
+    }
+    public void establecerEstatusDeArticulo() throws Exception
+    {
+        try{
+            conexion2=conexion.getConnection();
+            int idArticulo= Integer.parseInt(lbl_idArticulo.getText());
+            preparadorSentencia= conexion2.prepareStatement("UPDATE articulo SET estatus=? WHERE id=?");
+            preparadorSentencia.setString(1,"disponible");
+            preparadorSentencia.setInt(2,idArticulo);
+            preparadorSentencia.execute();
+        }catch(Exception e)
+        {
+            throw new Exception("Error al establecer el estatus del articulo");
+        }
+    }
+    public void establecerEstatusDePrestamo() throws Exception
+    {
+        try{
+            conexion2= conexion.getConnection();
+            int idPrestamo= Integer.parseInt(lbl_idPrestamo.getText());
+            preparadorSentencia= conexion2.prepareStatement("UPDATE prestamo SET estatus=? WHERE id=?");
+            preparadorSentencia.setString(1,"devuelto");
+            preparadorSentencia.setInt(2,idPrestamo);
+            preparadorSentencia.execute();
+        }catch(Exception e)
+        {
+            throw new Exception("Error al establecer el estatus del prestamo");
+        }
+    }
     public void limpiarLabels()
     {
         lbl_idArticulo.setText("-----------");
@@ -30,6 +67,28 @@ public class PanelDevolucion extends javax.swing.JFrame {
         lbl_fechaPrestamo.setText("-----------");
         lbl_fechaEntrega.setText("-----------");
         lbl_estatusDelPrestamo.setText("-----------");        
+    }
+    public void actualizarFormularioDespuesDeDevolver() throws Exception
+    {
+        try{
+            conexion2= conexion.getConnection();
+            int idPrestamo= Integer.parseInt(lbl_idPrestamo.getText());
+            preparadorSentencia= conexion2.prepareStatement("SELECT estatus FROM prestamo WHERE id=?");
+            preparadorSentencia.setInt(1,idPrestamo);
+            preparadorSentencia.setMaxRows(1);
+            preparadorSentencia.execute();
+            ResultSet resultado= preparadorSentencia.getResultSet();
+            if(resultado.first())
+            {
+                lbl_estatusDelPrestamo.setText(resultado.getString("estatus"));
+            }
+            else{
+                 throw new Exception("no se puedo actualizar el estatus del prestamo despues de devolverlo");
+            }
+        }catch(Exception e)
+        {
+             throw new Exception(e.getMessage());
+        }
     }
     public void obtenerRegistroDePrestamo(int id) throws Exception
     {
@@ -106,6 +165,7 @@ public class PanelDevolucion extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         lbl_estatusDelPrestamo = new javax.swing.JLabel();
         lbl_idPrestamo = new javax.swing.JLabel();
+        jb_devolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,6 +192,11 @@ public class PanelDevolucion extends javax.swing.JFrame {
         jb_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_buscarMouseClicked(evt);
+            }
+        });
+        jb_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_buscarActionPerformed(evt);
             }
         });
 
@@ -178,6 +243,19 @@ public class PanelDevolucion extends javax.swing.JFrame {
         lbl_idPrestamo.setForeground(new java.awt.Color(255, 255, 255));
         lbl_idPrestamo.setText("-----------");
 
+        jb_devolver.setText("devolver");
+        jb_devolver.setEnabled(false);
+        jb_devolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_devolverMouseClicked(evt);
+            }
+        });
+        jb_devolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_devolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -185,14 +263,9 @@ public class PanelDevolucion extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtf_claveArticulo))
-                        .addGap(80, 80, 80)
-                        .addComponent(jb_buscar)
-                        .addGap(27, 27, 27)
-                        .addComponent(lbl_idArticulo))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtf_claveArticulo))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -207,18 +280,27 @@ public class PanelDevolucion extends javax.swing.JFrame {
                             .addComponent(lbl_fechaPrestamo)
                             .addComponent(lbl_fechaEntrega)
                             .addComponent(lbl_estatusDelPrestamo))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jb_buscar)
+                        .addGap(35, 35, 35)
+                        .addComponent(jb_devolver))
+                    .addComponent(lbl_idArticulo))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtf_claveArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jb_buscar)
+                    .addComponent(jLabel2)
                     .addComponent(lbl_idArticulo))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jb_buscar)
+                    .addComponent(jb_devolver)
+                    .addComponent(jtf_claveArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbl_idPrestamo)
@@ -280,16 +362,54 @@ public class PanelDevolucion extends javax.swing.JFrame {
     }//GEN-LAST:event_jtf_claveArticuloActionPerformed
 
     private void jb_buscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_buscarMouseClicked
+        /*try{
+            limpiarLabels();
+            obtenerIdDeArticulo();
+            int idArticulo= Integer.parseInt(lbl_idArticulo.getText());
+            obtenerRegistroDePrestamo(idArticulo);   
+            activarBotonDevolver();
+        }catch(Exception e)
+        {
+             JOptionPane.showMessageDialog(null, e.getMessage());
+        }*/
+    }//GEN-LAST:event_jb_buscarMouseClicked
+
+    private void jb_devolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_devolverMouseClicked
+        /*try{
+            establecerEstatusDePrestamo();
+            establecerEstatusDeArticulo();
+            JOptionPane.showMessageDialog(null,"Se devolvio el articulo exitosamente");
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }*/
+    }//GEN-LAST:event_jb_devolverMouseClicked
+
+    private void jb_devolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_devolverActionPerformed
+         try{
+            establecerEstatusDePrestamo();
+            establecerEstatusDeArticulo();
+            JOptionPane.showMessageDialog(null,"Se devolvio el articulo exitosamente");
+            desactivarBotonDevolver(); 
+            actualizarFormularioDespuesDeDevolver();    
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jb_devolverActionPerformed
+
+    private void jb_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_buscarActionPerformed
         try{
             limpiarLabels();
             obtenerIdDeArticulo();
             int idArticulo= Integer.parseInt(lbl_idArticulo.getText());
-            obtenerRegistroDePrestamo(idArticulo);                        
+            obtenerRegistroDePrestamo(idArticulo);   
+            activarBotonDevolver();
         }catch(Exception e)
         {
              JOptionPane.showMessageDialog(null, e.getMessage());
         }
-    }//GEN-LAST:event_jb_buscarMouseClicked
+    }//GEN-LAST:event_jb_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,6 +457,7 @@ public class PanelDevolucion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jb_buscar;
+    private javax.swing.JButton jb_devolver;
     private javax.swing.JTextField jtf_claveArticulo;
     private javax.swing.JLabel lbl_estatusDelPrestamo;
     private javax.swing.JLabel lbl_fechaEntrega;
