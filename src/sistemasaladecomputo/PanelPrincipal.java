@@ -40,6 +40,10 @@ public class PanelPrincipal extends javax.swing.JFrame {
         jb_nuevoLibro = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jb_nuevoCañon = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jb_nuevaPc = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jb_nuevoPrestador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,10 +115,32 @@ public class PanelPrincipal extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(204, 204, 255));
         jLabel6.setText("Ingresar nuevo cañon");
 
-        jb_nuevoCañon.setText("acepta");
+        jb_nuevoCañon.setText("aceptar");
         jb_nuevoCañon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_nuevoCañonActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel7.setText("Ingresar nueva PC");
+
+        jb_nuevaPc.setText("aceptar");
+        jb_nuevaPc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_nuevaPcActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel8.setText("Ingresar nuevo prestador");
+
+        jb_nuevoPrestador.setText("aceptar");
+        jb_nuevoPrestador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_nuevoPrestadorActionPerformed(evt);
             }
         });
 
@@ -125,30 +151,32 @@ public class PanelPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jb_nuevoLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jb_nuevoCañon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jb_ver, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                                .addGap(2, 2, 2)
+                                .addComponent(jButton1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jButton2))
+                            .addComponent(jb_ver, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jb_nuevoPrestador)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jb_nuevaPc)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jb_nuevoLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jb_nuevoCañon)))))))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +201,15 @@ public class PanelPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jb_nuevoCañon))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jb_nuevaPc)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jb_nuevoPrestador)
+                    .addComponent(jLabel8))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -250,6 +286,18 @@ public class PanelPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jb_nuevoCañonActionPerformed
 
+    private void jb_nuevaPcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_nuevaPcActionPerformed
+        PanelAltaComputadora nuevaPC= new PanelAltaComputadora();
+        nuevaPC.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb_nuevaPcActionPerformed
+
+    private void jb_nuevoPrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_nuevoPrestadorActionPerformed
+        PanelAltaPrestador nuevoPrestador= new PanelAltaPrestador();
+        nuevoPrestador.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb_nuevoPrestadorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -294,10 +342,14 @@ public class PanelPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jb_nuevaPc;
     private javax.swing.JButton jb_nuevoCañon;
     private javax.swing.JButton jb_nuevoLibro;
+    private javax.swing.JButton jb_nuevoPrestador;
     private javax.swing.JButton jb_ver;
     // End of variables declaration//GEN-END:variables
 }
