@@ -166,8 +166,10 @@ public class PanelDevolucion extends javax.swing.JFrame {
         lbl_estatusDelPrestamo = new javax.swing.JLabel();
         lbl_idPrestamo = new javax.swing.JLabel();
         jb_devolver = new javax.swing.JButton();
+        jb_regresarAInicio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
@@ -256,6 +258,13 @@ public class PanelDevolucion extends javax.swing.JFrame {
             }
         });
 
+        jb_regresarAInicio.setText("regresar");
+        jb_regresarAInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_regresarAInicioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -263,31 +272,39 @@ public class PanelDevolucion extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtf_claveArticulo))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_idPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_nombrePrestador)
-                            .addComponent(lbl_fechaPrestamo)
-                            .addComponent(lbl_fechaEntrega)
-                            .addComponent(lbl_estatusDelPrestamo))))
-                .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jb_regresarAInicio)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel10))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_idPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbl_nombrePrestador)
+                                    .addComponent(lbl_fechaPrestamo)
+                                    .addComponent(lbl_fechaEntrega)
+                                    .addComponent(lbl_estatusDelPrestamo))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jb_buscar)
-                        .addGap(35, 35, 35)
-                        .addComponent(jb_devolver))
-                    .addComponent(lbl_idArticulo))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(29, 29, 29))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jtf_claveArticulo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jb_buscar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jb_devolver))
+                            .addComponent(lbl_idArticulo))
+                        .addContainerGap(59, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +338,9 @@ public class PanelDevolucion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel10)
                     .addComponent(lbl_estatusDelPrestamo))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jb_regresarAInicio)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -355,24 +374,27 @@ public class PanelDevolucion extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_claveArticuloActionPerformed
+    private void jb_regresarAInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_regresarAInicioActionPerformed
+        PanelPrincipal principal = new PanelPrincipal();
+        principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb_regresarAInicioActionPerformed
 
-    private void jb_buscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_buscarMouseClicked
-        /*try{
-            limpiarLabels();
-            obtenerIdDeArticulo();
-            int idArticulo= Integer.parseInt(lbl_idArticulo.getText());
-            obtenerRegistroDePrestamo(idArticulo);   
-            activarBotonDevolver();
+    private void jb_devolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_devolverActionPerformed
+        try{
+            establecerEstatusDePrestamo();
+            establecerEstatusDeArticulo();
+            JOptionPane.showMessageDialog(null,"Se devolvio el articulo exitosamente");
+            desactivarBotonDevolver();
+            actualizarFormularioDespuesDeDevolver();
         }catch(Exception e)
         {
-             JOptionPane.showMessageDialog(null, e.getMessage());
-        }*/
-    }//GEN-LAST:event_jb_buscarMouseClicked
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jb_devolverActionPerformed
 
     private void jb_devolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_devolverMouseClicked
         /*try{
@@ -385,31 +407,35 @@ public class PanelDevolucion extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_jb_devolverMouseClicked
 
-    private void jb_devolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_devolverActionPerformed
-         try{
-            establecerEstatusDePrestamo();
-            establecerEstatusDeArticulo();
-            JOptionPane.showMessageDialog(null,"Se devolvio el articulo exitosamente");
-            desactivarBotonDevolver(); 
-            actualizarFormularioDespuesDeDevolver();    
-        }catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }//GEN-LAST:event_jb_devolverActionPerformed
-
     private void jb_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_buscarActionPerformed
         try{
             limpiarLabels();
             obtenerIdDeArticulo();
             int idArticulo= Integer.parseInt(lbl_idArticulo.getText());
-            obtenerRegistroDePrestamo(idArticulo);   
+            obtenerRegistroDePrestamo(idArticulo);
             activarBotonDevolver();
         }catch(Exception e)
         {
-             JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jb_buscarActionPerformed
+
+    private void jb_buscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_buscarMouseClicked
+        /*try{
+            limpiarLabels();
+            obtenerIdDeArticulo();
+            int idArticulo= Integer.parseInt(lbl_idArticulo.getText());
+            obtenerRegistroDePrestamo(idArticulo);
+            activarBotonDevolver();
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }*/
+    }//GEN-LAST:event_jb_buscarMouseClicked
+
+    private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_claveArticuloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -458,6 +484,7 @@ public class PanelDevolucion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jb_buscar;
     private javax.swing.JButton jb_devolver;
+    private javax.swing.JButton jb_regresarAInicio;
     private javax.swing.JTextField jtf_claveArticulo;
     private javax.swing.JLabel lbl_estatusDelPrestamo;
     private javax.swing.JLabel lbl_fechaEntrega;

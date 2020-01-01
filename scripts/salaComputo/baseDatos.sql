@@ -1,4 +1,4 @@
-CREATE DATABASE SalaComputo;
+/*CREATE DATABASE SalaComputo;*/
 USE salacomputo;
 CREATE TABLE prestador(
     id INT AUTO_INCREMENT NOT NULL,
@@ -38,8 +38,8 @@ CREATE TABLE prestamo(
     inePrestador INT NOT NULL,
     claveEncargado INT NOT NULL, 
     claveArticulo INT NOT NULL,
-    fechaPrestamo DATETIME NOT NULL,
-    fechaEntrega DATETIME NOT NULL,
+    fechaPrestamo VARCHAR(50) NOT NULL,
+    fechaEntrega VARCHAR(50) NOT NULL,
     estatus VARCHAR(10) NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY(inePrestador) REFERENCES prestador(id),

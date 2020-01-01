@@ -51,6 +51,7 @@ public class PanelPrestamo extends javax.swing.JFrame {
         lbl_cantidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
@@ -243,6 +244,7 @@ public class PanelPrestamo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void buscarArticulo() throws Exception {
@@ -311,19 +313,26 @@ public class PanelPrestamo extends javax.swing.JFrame {
         }
     }
 
-    public void insertarTodosLosCampos() {
+    public void insertarTodosLosCampos() throws Exception {
         try {
             conexion2 = conexion.getConnection();
             preparadorSentencia = conexion2.prepareStatement("INSERT INTO prestamo(inePrestador,claveEncargado,claveArticulo,fechaPrestamo,fechaEntrega,estatus)values(?,?,?,?,?,?)");
             preparadorSentencia.setInt(1, Integer.parseInt(lbl_idPrestador.getText()));
             preparadorSentencia.setInt(2, Integer.parseInt(lbl_idEncargado.getText()));
             preparadorSentencia.setInt(3, Integer.parseInt(lbl_idArticulo.getText()));
-            preparadorSentencia.setString(4, ((JTextField) currentDate.getDateEditor().getUiComponent()).getText());
-            preparadorSentencia.setString(5, ((JTextField) dateFinal.getDateEditor().getUiComponent()).getText());
+            
+            String pattern = "yyyy-MM-dd'T'HH:mm:ssZ";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+            String currentDatePrestamo = simpleDateFormat.format(currentDate.getDate());
+            String dateExpirationPrestamo = simpleDateFormat.format(dateFinal.getDate());
+            
+            preparadorSentencia.setString(4, currentDatePrestamo);
+            preparadorSentencia.setString(5, dateExpirationPrestamo);
             preparadorSentencia.setString(6,"prestado");
             preparadorSentencia.execute();
         } catch (Exception e) {
-            System.out.println("erro al insertar los datos" + e);
+            throw new Exception("Error al insertar los datos" + e);
         }
     }
 
