@@ -101,7 +101,7 @@ public class PanelAltaLibro extends javax.swing.JFrame {
         preparadorSentencia.execute();
         }catch(Exception e)
         {
-              throw new Exception("error al agregar el libro");
+              throw new Exception("error al actualizar el libro");
         }
        
     }

@@ -58,7 +58,7 @@ public class PanelAltaCanon extends javax.swing.JFrame {
         preparadorSentencia.execute();
         }catch(Exception e)
         {
-              throw new Exception("error al agregar el cañon");
+              throw new Exception("error al actualizar el cañon");
         }
        
     }

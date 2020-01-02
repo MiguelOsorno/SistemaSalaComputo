@@ -95,7 +95,7 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
         preparadorSentencia.execute();
         }catch(Exception e)
         {
-              throw new Exception("error al agregar la PC");
+              throw new Exception("error al actualizar la PC");
         }
        
     }
