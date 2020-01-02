@@ -2,6 +2,7 @@
 package sistemasaladecomputo;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.swing.JOptionPane;
 public class conectar {
     private static Connection conn;
     private static final String driver= "com.mysql.cj.jdbc.Driver";
@@ -19,7 +20,7 @@ public class conectar {
                 System.out.println("conexion establecida");
             }
         }catch (Exception e){
-            System.out.println("error al conectar"+e);
+            JOptionPane.showMessageDialog(null,"Error al conectar con la base de datos:"+ e.getMessage());
         }
         
     }

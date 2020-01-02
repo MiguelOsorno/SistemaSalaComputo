@@ -43,6 +43,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
         jb_ModuloTipoArticulo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
