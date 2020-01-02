@@ -302,7 +302,7 @@ public class PanelTipoArticulo extends javax.swing.JFrame {
             else{
                 try{
                     actualizarTipoArticulo();
-                    JOptionPane.showMessageDialog(null,"se actualizo al prestador correctamente");
+                    JOptionPane.showMessageDialog(null,"se actualizo el articulo correctamente");
                     obtenerTodosLosTipoDeArticulos();
                 }catch(Exception e)
                 {

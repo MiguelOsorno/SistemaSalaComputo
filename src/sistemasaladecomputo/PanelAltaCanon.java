@@ -58,7 +58,7 @@ public class PanelAltaCanon extends javax.swing.JFrame {
         preparadorSentencia.execute();
         }catch(Exception e)
         {
-              throw new Exception("error al actualizar el cañon");
+              throw new Exception("error al actualizar el proyector");
         }
        
     }
@@ -107,10 +107,10 @@ public class PanelAltaCanon extends javax.swing.JFrame {
             preparadorSentencia.setString(3,color+"|");
             preparadorSentencia.setInt(4,2);
             preparadorSentencia.execute();
-            JOptionPane.showMessageDialog(null,"se registro el cañon con exito");
+            JOptionPane.showMessageDialog(null,"se registro el proyector con exito");
         }catch(Exception e)
         {
-            throw new Exception("error al agregar el cañon");
+            throw new Exception("error al agregar el proyector");
         }    
     }
     public void verificarClaveCanon() throws Exception
@@ -165,7 +165,7 @@ public class PanelAltaCanon extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Modulo Cañon");
+        jLabel1.setText("Modulo Proyector");
 
         jPanel2.setBackground(new java.awt.Color(102, 51, 255));
 
@@ -347,7 +347,7 @@ public class PanelAltaCanon extends javax.swing.JFrame {
             else{
                 try{
                     actualizarCanon();
-                    JOptionPane.showMessageDialog(null,"se actualizo el cañon correctamente");
+                    JOptionPane.showMessageDialog(null,"se actualizo el proyector correctamente");
                     obtenerTodosLosCanones();
                 }catch(Exception e)
                 {

@@ -61,7 +61,7 @@ INSERT INTO prestador(ine,nombre,apellido,tipo,direccion,telefono)
 values (104,"Diana","velazco","maestro","col.pera","111-114");
 
 INSERT INTO prestador(ine,nombre,apellido,tipo,direccion,telefono) 
-values (105,"jesus","muñoz","maestro","col.sandia","111-115");
+values (105,"jesus","munoz","maestro","col.sandia","111-115");
 
 INSERT INTO encargado(clave,nombre,apellido)
 values(201,"mariana","juarez");
@@ -73,7 +73,7 @@ INSERT INTO tipoArticulo(descripcion,tiempo,cantidad)
 values("libro","hora",2);
 
 INSERT INTO tipoArticulo(descripcion,tiempo,cantidad)
-values("cañon","hora",1);
+values("proyector","hora",1);
 
 INSERT INTO tipoArticulo(descripcion,tiempo,cantidad)
 values("computador","hora",1);

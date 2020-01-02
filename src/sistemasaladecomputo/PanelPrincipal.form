@@ -112,13 +112,13 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jb_nuevaPc" max="32767" attributes="0"/>
-                                  <Component id="jb_nuevoCañon" pref="114" max="32767" attributes="0"/>
+                                  <Component id="jb_nuevoCañon" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jb_ModuloTipoArticulo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -231,7 +231,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jb_nuevoCa&#xf1;on">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Modulo Ca&#xf1;on"/>
+                <Property name="text" type="java.lang.String" value="Modulo proyector"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_nuevoCa&#xf1;onActionPerformed"/>

@@ -320,9 +320,9 @@ public class PanelPrestamo extends javax.swing.JFrame {
                 lbl_tipoArticulo.setText("");
                 throw new Exception("No fue posible encontrar el articulo");
             }
-            if(tipoPrestador.equals("alumno") && tipoArticulo.equals("cañon"))
+            if(tipoPrestador.equals("alumno") && tipoArticulo.equals("proyector"))
             {
-                throw new Exception("un alumno no puede prestar un cañon");
+                throw new Exception("un alumno no puede prestar un proyector");
             }
         }catch(Exception e){
             throw new Exception(e.getMessage());
