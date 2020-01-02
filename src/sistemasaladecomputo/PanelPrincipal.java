@@ -5,6 +5,8 @@
  */
 package sistemasaladecomputo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Miguel
@@ -37,7 +39,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jb_ver = new javax.swing.JButton();
         jb_nuevoLibro = new javax.swing.JButton();
-        jb_nuevoCañon = new javax.swing.JButton();
+        jb_nuevoProyector = new javax.swing.JButton();
         jb_nuevaPc = new javax.swing.JButton();
         jb_nuevoPrestador = new javax.swing.JButton();
         jb_ModuloTipoArticulo = new javax.swing.JButton();
@@ -105,10 +107,10 @@ public class PanelPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jb_nuevoCañon.setText("Modulo proyector");
-        jb_nuevoCañon.addActionListener(new java.awt.event.ActionListener() {
+        jb_nuevoProyector.setText("Modulo proyector");
+        jb_nuevoProyector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_nuevoCañonActionPerformed(evt);
+                jb_nuevoProyectorActionPerformed(evt);
             }
         });
 
@@ -157,7 +159,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jb_nuevaPc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jb_nuevoCañon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jb_nuevoProyector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jb_ModuloTipoArticulo)))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -181,7 +183,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jb_nuevoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jb_nuevoCañon, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jb_nuevoProyector, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jb_ModuloTipoArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -225,59 +227,104 @@ public class PanelPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try{
+            PanelPrestamo prestamo = new PanelPrestamo();
+            prestamo.setVisible(true);
+            this.dispose();
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        PanelPrestamo prestamo = new PanelPrestamo();
-        prestamo.setVisible(true);
-        this.dispose();
+       
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+      try{
+          PanelDevolucion devolucion = new PanelDevolucion();
+          devolucion.setVisible(true);
+          this.dispose();
+      }catch(Exception e)
+      {
+          JOptionPane.showMessageDialog(null, e.getMessage());
+      }      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-      PanelDevolucion devolucion = new PanelDevolucion();
-      devolucion.setVisible(true);
-      this.dispose();
+     
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jb_verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_verActionPerformed
-        PrestamosPendientes panelPrestamosPendientes= new PrestamosPendientes();
-        panelPrestamosPendientes.setVisible(true);
-        this.dispose();
+        try{
+           PrestamosPendientes panelPrestamosPendientes= new PrestamosPendientes();
+            panelPrestamosPendientes.setVisible(true);
+            this.dispose();
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }        
     }//GEN-LAST:event_jb_verActionPerformed
 
     private void jb_nuevoLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_nuevoLibroActionPerformed
-        PanelAltaLibro libroNuevo= new PanelAltaLibro();
-        libroNuevo.setVisible(true);
-        this.dispose();
+        try{
+            PanelAltaLibro libroNuevo= new PanelAltaLibro();
+            libroNuevo.setVisible(true);
+            this.dispose(); 
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }      
     }//GEN-LAST:event_jb_nuevoLibroActionPerformed
 
-    private void jb_nuevoCañonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_nuevoCañonActionPerformed
-        PanelAltaCanon cañonNuevo= new PanelAltaCanon();
-        cañonNuevo.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jb_nuevoCañonActionPerformed
+    private void jb_nuevoProyectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_nuevoProyectorActionPerformed
+        try{
+            PanelAltaCanon proyectorNuevo= new PanelAltaCanon();
+            proyectorNuevo.setVisible(true);
+            this.dispose();
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }         
+    }//GEN-LAST:event_jb_nuevoProyectorActionPerformed
 
     private void jb_nuevaPcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_nuevaPcActionPerformed
-        PanelAltaComputadora nuevaPC= new PanelAltaComputadora();
-        nuevaPC.setVisible(true);
-        this.dispose();
+        try{
+              PanelAltaComputadora nuevaPC= new PanelAltaComputadora();
+              nuevaPC.setVisible(true);
+              this.dispose();
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }      
     }//GEN-LAST:event_jb_nuevaPcActionPerformed
 
     private void jb_nuevoPrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_nuevoPrestadorActionPerformed
-        PanelAltaPrestador nuevoPrestador= new PanelAltaPrestador();
-        nuevoPrestador.setVisible(true);
-        this.dispose();
+         try{
+            PanelAltaPrestador nuevoPrestador= new PanelAltaPrestador();
+            nuevoPrestador.setVisible(true);
+            this.dispose();
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }         
     }//GEN-LAST:event_jb_nuevoPrestadorActionPerformed
 
     private void jb_ModuloTipoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ModuloTipoArticuloActionPerformed
-        PanelTipoArticulo nuevoTipoArticulo = new PanelTipoArticulo();
-        nuevoTipoArticulo.setVisible(true);
-        this.dispose();
+       try{
+             PanelTipoArticulo nuevoTipoArticulo = new PanelTipoArticulo();
+             nuevoTipoArticulo.setVisible(true);
+             this.dispose();
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }         
     }//GEN-LAST:event_jb_ModuloTipoArticuloActionPerformed
 
     /**
@@ -326,9 +373,9 @@ public class PanelPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jb_ModuloTipoArticulo;
     private javax.swing.JButton jb_nuevaPc;
-    private javax.swing.JButton jb_nuevoCañon;
     private javax.swing.JButton jb_nuevoLibro;
     private javax.swing.JButton jb_nuevoPrestador;
+    private javax.swing.JButton jb_nuevoProyector;
     private javax.swing.JButton jb_ver;
     // End of variables declaration//GEN-END:variables
 }

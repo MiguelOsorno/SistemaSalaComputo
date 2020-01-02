@@ -15,17 +15,20 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class PanelAltaCanon extends javax.swing.JFrame {
-    conectar conexion = new conectar();
+    conectar conexion;
     Connection conexion2;
     PreparedStatement preparadorSentencia;
     /**
      * Creates new form PanelAltaCañon
      */
-    public PanelAltaCanon() {
+    public PanelAltaCanon() throws Exception {
         initComponents();
+        conexion = new conectar();
         obtenerTodosLosCanones();
     }
      public void limpiar()
@@ -425,7 +428,11 @@ public class PanelAltaCanon extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelAltaCanon().setVisible(true);
+                try {
+                    new PanelAltaCanon().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PanelAltaCanon.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

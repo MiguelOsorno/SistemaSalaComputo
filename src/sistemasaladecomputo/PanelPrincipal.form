@@ -112,7 +112,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jb_nuevaPc" max="32767" attributes="0"/>
-                                  <Component id="jb_nuevoCañon" max="32767" attributes="0"/>
+                                  <Component id="jb_nuevoProyector" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jb_ModuloTipoArticulo" min="-2" max="-2" attributes="0"/>
@@ -144,7 +144,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jb_nuevoLibro" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
-                              <Component id="jb_nuevoCañon" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
+                              <Component id="jb_nuevoProyector" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jb_ModuloTipoArticulo" max="32767" attributes="0"/>
                       </Group>
@@ -229,12 +229,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_nuevoLibroActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jb_nuevoCa&#xf1;on">
+            <Component class="javax.swing.JButton" name="jb_nuevoProyector">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modulo proyector"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_nuevoCa&#xf1;onActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_nuevoProyectorActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jb_nuevaPc">

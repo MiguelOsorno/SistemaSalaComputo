@@ -15,17 +15,20 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class PanelAltaComputadora extends javax.swing.JFrame {
-     conectar conexion = new conectar();
+     conectar conexion;
     Connection conexion2;
     PreparedStatement preparadorSentencia;
     /**
      * Creates new form PanelAltaComputadora
      */
-    public PanelAltaComputadora() {
+    public PanelAltaComputadora() throws Exception {
         initComponents();
+        conexion = new conectar();
         obtenerTodosLasPc();
     }
      public void limpiar()
@@ -432,7 +435,11 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelAltaComputadora().setVisible(true);
+                try {
+                    new PanelAltaComputadora().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PanelAltaComputadora.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.sql.ResultSetMetaData;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,15 +23,16 @@ import java.sql.ResultSetMetaData;
  */
 public class PanelAltaLibro extends javax.swing.JFrame {
 
-    conectar conexion = new conectar();
+    conectar conexion;
     Connection conexion2;
     PreparedStatement preparadorSentencia;
 
     /**
      * Creates new form PanelAltaLibro
      */
-    public PanelAltaLibro() {
+    public PanelAltaLibro() throws Exception {
         initComponents();
+        conexion = new conectar();
         this.obtenerTodosLosLibros();
     }   
     public void limpiar()
@@ -467,7 +470,11 @@ public class PanelAltaLibro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelAltaLibro().setVisible(true);
+                try {
+                    new PanelAltaLibro().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PanelAltaLibro.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

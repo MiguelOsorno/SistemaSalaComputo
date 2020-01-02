@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -20,12 +22,13 @@ import javax.swing.table.TableColumnModel;
  * @author Miguel
  */
 public class PrestamosPendientes extends javax.swing.JFrame {
-    conectar conexion = new conectar();
+    conectar conexion;
     Connection conexion2;
     PreparedStatement preparadorSentencia;
     /** Creates new form PrestamosPendientes */
-    public PrestamosPendientes() {
+    public PrestamosPendientes() throws Exception {
         initComponents();
+        conexion = new conectar();
         obtenerTodoLosPrestamosPendientes();
     }
     public void obtenerTodoLosPrestamosPendientes()
@@ -220,7 +223,11 @@ public class PrestamosPendientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PrestamosPendientes().setVisible(true);                
+                try {                
+                    new PrestamosPendientes().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PrestamosPendientes.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

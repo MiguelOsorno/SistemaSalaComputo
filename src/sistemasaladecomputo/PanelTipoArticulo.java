@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,15 +19,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Miguel
  */
 public class PanelTipoArticulo extends javax.swing.JFrame {
-    conectar conexion = new conectar();
+    conectar conexion;
     Connection conexion2;
     PreparedStatement preparadorSentencia;
 
     /**
      * Creates new form PanelTipoArticulo
      */
-    public PanelTipoArticulo() {
+    public PanelTipoArticulo() throws Exception {
         initComponents();
+        conexion = new conectar();
         obtenerTodosLosTipoDeArticulos();
     }
     public void actualizarTipoArticulo() throws Exception
@@ -348,7 +351,11 @@ public class PanelTipoArticulo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelTipoArticulo().setVisible(true);
+                try {
+                    new PanelTipoArticulo().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PanelTipoArticulo.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

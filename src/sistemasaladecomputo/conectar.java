@@ -10,7 +10,7 @@ public class conectar {
     private static final String password= "";
     private static final String url= "jdbc:mysql://localhost/salacomputo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     
-    public conectar(){
+    public conectar() throws Exception{
         conn=null;
         try{
             Class.forName(driver);
@@ -20,7 +20,7 @@ public class conectar {
                 System.out.println("conexion establecida");
             }
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Error al conectar con la base de datos:"+ e.getMessage());
+            throw new Exception ("Error al conectar con la base de datos:");
         }
         
     }

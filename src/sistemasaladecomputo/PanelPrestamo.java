@@ -9,18 +9,28 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class PanelPrestamo extends javax.swing.JFrame {
 
-    conectar conexion = new conectar();
+    conectar conexion;
     Connection conexion2;
     PreparedStatement preparadorSentencia;
     Date fecha;
 
-    public PanelPrestamo() {
-        initComponents();
+    public PanelPrestamo() throws Exception {
+            initComponents();
+            conexion = new conectar();
+            lbl_idPrestador.setVisible(false);
+            lbl_idEncargado.setVisible(false);
+            lbl_idArticulo.setVisible(false);
+            lbl_estatus.setVisible(false);
+            lbl_tipoArticulo.setVisible(false);
+            lbl_tiempo.setVisible(false);
+            lbl_cantidad.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -163,33 +173,33 @@ public class PanelPrestamo extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(jb_agregar)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jtf_inePrestador)
                             .addComponent(jtf_claveEncargado)
                             .addComponent(jtf_claveArticulo)
                             .addComponent(currentDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dateFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbl_idPrestador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_idEncargado, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(lbl_idArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_tiempo)
-                                    .addComponent(lbl_tipoArticulo)
-                                    .addComponent(lbl_cantidad))
-                                .addGap(12, 12, 12))))
+                            .addComponent(dateFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jb_agregar)
-                        .addGap(27, 27, 27)
+                        .addGap(128, 128, 128)
                         .addComponent(jb_cancelar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_cantidad)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(lbl_idPrestador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lbl_tiempo))
+                        .addComponent(lbl_idEncargado, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                        .addComponent(lbl_idArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_tipoArticulo))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -199,7 +209,8 @@ public class PanelPrestamo extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtf_inePrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(lbl_idPrestador))
+                    .addComponent(lbl_idPrestador)
+                    .addComponent(lbl_tiempo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -218,18 +229,20 @@ public class PanelPrestamo extends javax.swing.JFrame {
                     .addComponent(lbl_estatus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(dateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addComponent(lbl_tipoArticulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(dateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(lbl_tipoArticulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_cantidad)
+                        .addGap(31, 31, 31)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jb_agregar)
                     .addComponent(jb_cancelar)
-                    .addComponent(lbl_tiempo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbl_cantidad)
-                .addContainerGap(120, Short.MAX_VALUE))
+                    .addComponent(jb_agregar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -245,7 +258,7 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(17, 17, 17)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -259,12 +272,76 @@ public class PanelPrestamo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtf_claveArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveArticuloKeyTyped
+
+    }//GEN-LAST:event_jtf_claveArticuloKeyTyped
+
+    private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_claveArticuloActionPerformed
+
+    private void jb_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_cancelarActionPerformed
+        PanelPrincipal principal = new PanelPrincipal();
+        principal.setVisible(true);
+        conexion.desconectar();
+        this.dispose();
+    }//GEN-LAST:event_jb_cancelarActionPerformed
+
+    private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
+        if(jtf_inePrestador.getText().isEmpty() || jtf_claveEncargado.getText().isEmpty() || jtf_claveArticulo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"favor de no dejar campos vacios");
+        }
+        else{
+            try{
+                calcularFechaYHoraActual();
+                buscarArticulo();
+                obtenerEstatusDeArticulo();
+                obtenerFechaCantidadTipo();
+                insertarTodosLosCampos();
+                int id= Integer.parseInt(lbl_idArticulo.getText());
+                actualizarEstatusDeArticulo(id);
+                JOptionPane.showMessageDialog(null,"Se realizo el prestamo exitosamente");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jb_agregarActionPerformed
+
+    private void jtf_claveEncargadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveEncargadoKeyTyped
+        char claveEncargado =evt.getKeyChar();
+        if(Character.isLetter(claveEncargado)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
+        }
+    }//GEN-LAST:event_jtf_claveEncargadoKeyTyped
+
+    private void jtf_inePrestadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_inePrestadorKeyTyped
+        char ine =evt.getKeyChar();
+        if(Character.isLetter(ine)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
+        }
+    }//GEN-LAST:event_jtf_inePrestadorKeyTyped
+
+    private void jtf_inePrestadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_inePrestadorKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_inePrestadorKeyReleased
+
+    private void jtf_inePrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_inePrestadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_inePrestadorActionPerformed
 
     public void buscarArticulo() throws Exception {
         try {
@@ -401,70 +478,6 @@ public class PanelPrestamo extends javax.swing.JFrame {
             throw new Exception("el articulo no esta disponible");
         }
     }
-    private void jtf_inePrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_inePrestadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_inePrestadorActionPerformed
-
-    private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-        if(jtf_inePrestador.getText().isEmpty() || jtf_claveEncargado.getText().isEmpty() || jtf_claveArticulo.getText().isEmpty())
-        {
-            JOptionPane.showMessageDialog(null,"favor de no dejar campos vacios");
-        }
-        else{
-            try{
-                calcularFechaYHoraActual();
-                buscarArticulo();
-                obtenerEstatusDeArticulo();
-                obtenerFechaCantidadTipo();
-                insertarTodosLosCampos();
-                int id= Integer.parseInt(lbl_idArticulo.getText());
-                actualizarEstatusDeArticulo(id);
-                JOptionPane.showMessageDialog(null,"Se realizo el prestamo exitosamente");
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                }
-        }
-      
-    }//GEN-LAST:event_jb_agregarActionPerformed
-
-    private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_claveArticuloActionPerformed
-
-    private void jb_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_cancelarActionPerformed
-        PanelPrincipal principal = new PanelPrincipal();
-        principal.setVisible(true);
-        conexion.desconectar();
-        this.dispose();
-        
-    }//GEN-LAST:event_jb_cancelarActionPerformed
-
-    private void jtf_inePrestadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_inePrestadorKeyTyped
-        char ine =evt.getKeyChar();
-        if(Character.isLetter(ine)){
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
-        }       
-    }//GEN-LAST:event_jtf_inePrestadorKeyTyped
-
-    private void jtf_claveEncargadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveEncargadoKeyTyped
-        char claveEncargado =evt.getKeyChar();
-        if(Character.isLetter(claveEncargado)){
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
-        } 
-    }//GEN-LAST:event_jtf_claveEncargadoKeyTyped
-
-    private void jtf_claveArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveArticuloKeyTyped
-            
-    }//GEN-LAST:event_jtf_claveArticuloKeyTyped
-
-    private void jtf_inePrestadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_inePrestadorKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_inePrestadorKeyReleased
-
     /**
      * @param args the command line arguments
      */
@@ -495,7 +508,11 @@ public class PanelPrestamo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelPrestamo().setVisible(true);
+                try {
+                    new PanelPrestamo().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PanelPrestamo.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -24,12 +24,14 @@ import javax.swing.JOptionPane;
  */
 public class PanelDevolucion extends javax.swing.JFrame {
 
-    conectar conexion = new conectar();
+    conectar conexion;
     Connection conexion2;
     PreparedStatement preparadorSentencia;
 
-    public PanelDevolucion() {
+    public PanelDevolucion() throws Exception {
         initComponents();
+        conexion = new conectar();
+        lbl_idArticulo.setVisible(false);
     }
 
     public void activarBotonDevolver() {
@@ -481,7 +483,11 @@ public class PanelDevolucion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelDevolucion().setVisible(true);
+                try {
+                    new PanelDevolucion().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PanelDevolucion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
