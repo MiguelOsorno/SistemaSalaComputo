@@ -107,5 +107,5 @@ values("302PC","disponible","Vaio|gris|",3);
 
 DROP USER IF EXISTS 'miguelosorno'@'localhost';
 CREATE USER 'miguelosorno'@'localhost';
-GRANT ALL ON salacomputo.* TO  'miguelosorno'@'localhost';
+GRANT ALL ON salacomputo.* TO 'miguelosorno'@'localhost';
 FLUSH PRIVILEGES;
