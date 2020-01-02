@@ -91,18 +91,6 @@
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jb_nuevoLibro" max="32767" attributes="0"/>
-                                  <Component id="jb_nuevoPrestador" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jb_nuevaPc" max="32767" attributes="0"/>
-                                  <Component id="jb_nuevoCañon" pref="114" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -114,9 +102,22 @@
                                   <Component id="jButton2" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                                   <Component id="jb_ver" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jb_nuevoLibro" max="32767" attributes="0"/>
+                                  <Component id="jb_nuevoPrestador" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jb_nuevaPc" max="32767" attributes="0"/>
+                                  <Component id="jb_nuevoCañon" pref="114" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jb_ModuloTipoArticulo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -139,9 +140,12 @@
                           <Component id="jb_ver" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jb_nuevoLibro" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
-                          <Component id="jb_nuevoCañon" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jb_nuevoLibro" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
+                              <Component id="jb_nuevoCañon" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jb_ModuloTipoArticulo" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -246,6 +250,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_nuevoPrestadorActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jb_ModuloTipoArticulo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modulo Tipo Articulo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_ModuloTipoArticuloActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
