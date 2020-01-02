@@ -171,7 +171,7 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Registrar Computadora");
+        jLabel1.setText("Modulo Computadora");
 
         jPanel2.setBackground(new java.awt.Color(102, 51, 255));
 
@@ -306,7 +306,7 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(

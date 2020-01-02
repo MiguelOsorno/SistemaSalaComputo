@@ -165,7 +165,7 @@ public class PanelAltaCanon extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Modulo cañon");
+        jLabel1.setText("Modulo Cañon");
 
         jPanel2.setBackground(new java.awt.Color(102, 51, 255));
 

@@ -46,9 +46,9 @@ public class PanelPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("INICIO");
+        jLabel1.setText("Inicio");
 
         jPanel2.setBackground(new java.awt.Color(102, 51, 255));
 

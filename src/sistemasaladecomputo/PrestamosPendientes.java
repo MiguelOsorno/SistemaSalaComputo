@@ -26,6 +26,7 @@ public class PrestamosPendientes extends javax.swing.JFrame {
     /** Creates new form PrestamosPendientes */
     public PrestamosPendientes() {
         initComponents();
+        obtenerTodoLosPrestamosPendientes();
     }
     public void obtenerTodoLosPrestamosPendientes()
     {
@@ -34,7 +35,7 @@ public class PrestamosPendientes extends javax.swing.JFrame {
             DefaultTableModel tabla = new DefaultTableModel();
             jt_Tabla.setModel(tabla);
             conexion2= conexion.getConnection();
-            prepararSentencia= conexion2.prepareStatement("SELECT prestador.ine,articulo.clave,prestamo.fechaPrestamo,prestamo.fechaEntrega,prestamo.estatus FROM ((prestamo INNER JOIN prestador ON prestamo.inePrestador= prestador.id) INNER JOIN articulo ON prestamo.claveArticulo= articulo.id)  WHERE prestamo.estatus=?");
+            prepararSentencia= conexion2.prepareStatement("SELECT prestador.ine,articulo.clave,tipoArticulo.descripcion,prestamo.fechaPrestamo,prestamo.fechaEntrega,prestamo.estatus FROM (((prestamo INNER JOIN prestador ON prestamo.inePrestador= prestador.id) INNER JOIN articulo ON prestamo.claveArticulo= articulo.id)INNER JOIN tipoArticulo ON articulo.idTipoArticulo=tipoArticulo.id)  WHERE prestamo.estatus=?");
             prepararSentencia.setString(1,"prestado");
             prepararSentencia.execute();
             ResultSet resultado= prepararSentencia.getResultSet();
@@ -47,14 +48,15 @@ public class PrestamosPendientes extends javax.swing.JFrame {
             }*/
            tabla.addColumn("INE Prestador");
            tabla.addColumn("Clave Articulo");
+           tabla.addColumn("Tipo de articulo");
            tabla.addColumn("Fecha Prestamo");
            tabla.addColumn("Fecha Entrega");
            tabla.addColumn("Estatus");
            
-           jt_Tabla.getColumnModel().getColumn(2).setCellRenderer(new DateCellRenderer());
            jt_Tabla.getColumnModel().getColumn(3).setCellRenderer(new DateCellRenderer());
+           jt_Tabla.getColumnModel().getColumn(4).setCellRenderer(new DateCellRenderer());
            
-           int []anchoCeldas={300,300,500,500,200};
+           int []anchoCeldas={300,300,400,500,500,200};
            for(int contador=0;contador<columnas;contador++)
            {
                jt_Tabla.getColumnModel().getColumn(contador).setPreferredWidth(anchoCeldas[contador]);
@@ -89,7 +91,6 @@ public class PrestamosPendientes extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_Tabla = new javax.swing.JTable();
-        jb_consultar = new javax.swing.JButton();
         jb_regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,7 +99,7 @@ public class PrestamosPendientes extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Prestamos Pendientes");
 
@@ -118,14 +119,7 @@ public class PrestamosPendientes extends javax.swing.JFrame {
         jt_Tabla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jt_Tabla);
 
-        jb_consultar.setText("consultar");
-        jb_consultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_consultarActionPerformed(evt);
-            }
-        });
-
-        jb_regresar.setText("regresar");
+        jb_regresar.setText("Regresar");
         jb_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_regresarActionPerformed(evt);
@@ -137,23 +131,19 @@ public class PrestamosPendientes extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jb_consultar)
-                .addGap(26, 26, 26)
-                .addComponent(jb_regresar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jb_regresar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jb_consultar)
-                    .addComponent(jb_regresar))
+                .addComponent(jb_regresar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -192,10 +182,6 @@ public class PrestamosPendientes extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jb_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_consultarActionPerformed
-        obtenerTodoLosPrestamosPendientes();
-    }//GEN-LAST:event_jb_consultarActionPerformed
 
     private void jb_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_regresarActionPerformed
         PanelPrincipal principal = new PanelPrincipal();
@@ -243,7 +229,6 @@ public class PrestamosPendientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jb_consultar;
     private javax.swing.JButton jb_regresar;
     private javax.swing.JTable jt_Tabla;
     // End of variables declaration//GEN-END:variables

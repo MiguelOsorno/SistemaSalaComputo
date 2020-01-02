@@ -184,7 +184,7 @@ public class PanelDevolucion extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Devolucion");
 
@@ -269,7 +269,7 @@ public class PanelDevolucion extends javax.swing.JFrame {
             }
         });
 
-        jb_regresarAInicio.setText("regresar");
+        jb_regresarAInicio.setText("Regresar");
         jb_regresarAInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_regresarAInicioActionPerformed(evt);
@@ -351,7 +351,7 @@ public class PanelDevolucion extends javax.swing.JFrame {
                     .addComponent(lbl_estatusDelPrestamo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jb_regresarAInicio)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

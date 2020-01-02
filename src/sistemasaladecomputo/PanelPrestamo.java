@@ -55,9 +55,9 @@ public class PanelPrestamo extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Registro");
+        jLabel1.setText("Nuevo prestamo");
 
         jPanel2.setBackground(new java.awt.Color(102, 51, 255));
         jPanel2.setForeground(new java.awt.Color(0, 51, 153));
@@ -90,14 +90,14 @@ public class PanelPrestamo extends javax.swing.JFrame {
             }
         });
 
-        jb_agregar.setText("agregar");
+        jb_agregar.setText("Guardar");
         jb_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_agregarActionPerformed(evt);
             }
         });
 
-        jb_cancelar.setText("regresar");
+        jb_cancelar.setText("Regresar");
         jb_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_cancelarActionPerformed(evt);
@@ -268,11 +268,14 @@ public class PanelPrestamo extends javax.swing.JFrame {
 
     public void buscarArticulo() throws Exception {
         try {
+            String tipoPrestador="";
+            String tipoArticulo="";
+            
             PreparedStatement preparadorSentencia;
             Connection conn = conexion.getConnection();
             int ine = Integer.parseInt(jtf_inePrestador.getText());
             System.out.println(ine);
-            preparadorSentencia = conn.prepareStatement("SELECT id FROM prestador where ine=?");
+            preparadorSentencia = conn.prepareStatement("SELECT id,tipo FROM prestador where ine=?");
             preparadorSentencia.setInt(1, ine);
             preparadorSentencia.setMaxRows(1);
             preparadorSentencia.execute();
@@ -280,6 +283,7 @@ public class PanelPrestamo extends javax.swing.JFrame {
             if (result.first()) {
                 System.out.println(result.getString("id"));
                 lbl_idPrestador.setText(result.getString("id"));
+                tipoPrestador=result.getString("tipo");
             } else {
                 lbl_idPrestador.setText("no existe id prestador");
                 throw new Exception("No fue posible encontrar al prestador");
@@ -298,7 +302,7 @@ public class PanelPrestamo extends javax.swing.JFrame {
                 throw new Exception("No fue posible encontrar al encargado");
             }
             String claveArticulo = jtf_claveArticulo.getText();
-            preparadorSentencia = conn.prepareStatement("SELECT articulo.id, articulo.estatus,articulo.idTipoArticulo,tipoArticulo.tiempo,tipoArticulo.cantidad FROM articulo INNER JOIN tipoArticulo ON articulo.idTipoArticulo=tipoArticulo.id WHERE articulo.clave=?");
+            preparadorSentencia = conn.prepareStatement("SELECT articulo.id, articulo.estatus,articulo.idTipoArticulo,tipoArticulo.tiempo,tipoArticulo.cantidad, tipoArticulo.descripcion FROM articulo INNER JOIN tipoArticulo ON articulo.idTipoArticulo=tipoArticulo.id WHERE articulo.clave=?");
             preparadorSentencia.setString(1, claveArticulo);
             preparadorSentencia.setMaxRows(1);
             preparadorSentencia.execute();
@@ -309,11 +313,16 @@ public class PanelPrestamo extends javax.swing.JFrame {
                 lbl_tipoArticulo.setText(result.getString("articulo.idTipoArticulo"));
                 lbl_tiempo.setText(result.getString("tipoArticulo.tiempo"));
                 lbl_cantidad.setText(result.getString("tipoArticulo.cantidad"));
+                tipoArticulo=result.getString("descripcion");
             } else {
                 lbl_idArticulo.setText("no existe id de articulo");
                 lbl_estatus.setText("");
                 lbl_tipoArticulo.setText("");
                 throw new Exception("No fue posible encontrar el articulo");
+            }
+            if(tipoPrestador.equals("alumno") && tipoArticulo.equals("cañon"))
+            {
+                throw new Exception("un alumno no puede prestar un cañon");
             }
         }catch(Exception e){
             throw new Exception(e.getMessage());

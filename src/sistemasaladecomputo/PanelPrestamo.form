@@ -67,12 +67,12 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Georgia" size="36" style="1"/>
+              <Font name="Georgia" size="18" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Registro"/>
+            <Property name="text" type="java.lang.String" value="Nuevo prestamo"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -229,7 +229,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jb_agregar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="agregar"/>
+                <Property name="text" type="java.lang.String" value="Guardar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_agregarActionPerformed"/>
@@ -237,7 +237,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jb_cancelar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="regresar"/>
+                <Property name="text" type="java.lang.String" value="Regresar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_cancelarActionPerformed"/>

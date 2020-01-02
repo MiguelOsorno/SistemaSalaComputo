@@ -199,9 +199,9 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Registrar Prestador");
+        jLabel1.setText("Modulo Prestador");
 
         jPanel2.setBackground(new java.awt.Color(102, 51, 255));
 
@@ -237,14 +237,14 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("telefono");
 
-        jb_agregar.setText("agregar");
+        jb_agregar.setText("Guardar");
         jb_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_agregarActionPerformed(evt);
             }
         });
 
-        jb_regresar.setText("regresar");
+        jb_regresar.setText("Regresar");
         jb_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_regresarActionPerformed(evt);
@@ -368,7 +368,7 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
                     .addComponent(jb_regresar))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -378,7 +378,7 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(337, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
