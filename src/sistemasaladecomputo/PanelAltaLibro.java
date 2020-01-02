@@ -186,6 +186,15 @@ public class PanelAltaLibro extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Titulo");
 
+        jtf_titulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtf_tituloKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_tituloKeyTyped(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Autor");
@@ -374,7 +383,7 @@ public class PanelAltaLibro extends javax.swing.JFrame {
             else{
                 try{
                     actualizarLibro();
-                    JOptionPane.showMessageDialog(null,"se actulizo el libro correctamente");
+                    JOptionPane.showMessageDialog(null,"se actualizo el libro correctamente");
                     obtenerTodosLosLibros();
                 }catch(Exception e)
                 {
@@ -411,6 +420,21 @@ public class PanelAltaLibro extends javax.swing.JFrame {
         limpiar();
         jtf_claveLibro.setEnabled(true);
     }//GEN-LAST:event_jb_nuevoActionPerformed
+
+    private void jtf_tituloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_tituloKeyTyped
+       char caracter=evt.getKeyChar();
+        System.out.println(caracter);
+        if(caracter=='|')
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "No puede usar este caracter");
+        }
+    }//GEN-LAST:event_jtf_tituloKeyTyped
+
+    private void jtf_tituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_tituloKeyPressed
+       
+    }//GEN-LAST:event_jtf_tituloKeyPressed
 
     /**
      * @param args the command line arguments

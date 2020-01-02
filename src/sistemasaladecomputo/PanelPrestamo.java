@@ -72,6 +72,9 @@ public class PanelPrestamo extends javax.swing.JFrame {
             }
         });
         jtf_inePrestador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtf_inePrestadorKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtf_inePrestadorKeyTyped(evt);
             }
@@ -447,6 +450,10 @@ public class PanelPrestamo extends javax.swing.JFrame {
     private void jtf_claveArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveArticuloKeyTyped
             
     }//GEN-LAST:event_jtf_claveArticuloKeyTyped
+
+    private void jtf_inePrestadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_inePrestadorKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_inePrestadorKeyReleased
 
     /**
      * @param args the command line arguments
