@@ -391,6 +391,7 @@ public class PanelDevolucion extends javax.swing.JFrame {
     private void jb_regresarAInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_regresarAInicioActionPerformed
         PanelPrincipal principal = new PanelPrincipal();
         principal.setVisible(true);
+        conexion.desconectar();
         this.dispose();
     }//GEN-LAST:event_jb_regresarAInicioActionPerformed
 

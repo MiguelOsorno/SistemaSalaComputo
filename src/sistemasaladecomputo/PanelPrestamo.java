@@ -434,6 +434,7 @@ public class PanelPrestamo extends javax.swing.JFrame {
     private void jb_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_cancelarActionPerformed
         PanelPrincipal principal = new PanelPrincipal();
         principal.setVisible(true);
+        conexion.desconectar();
         this.dispose();
         
     }//GEN-LAST:event_jb_cancelarActionPerformed

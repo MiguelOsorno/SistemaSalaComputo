@@ -396,6 +396,7 @@ public class PanelAltaLibro extends javax.swing.JFrame {
     private void jb_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_regresarActionPerformed
         PanelPrincipal panelPrincipal = new PanelPrincipal();
         panelPrincipal.setVisible(true);
+        conexion.desconectar();
         this.dispose();
     }//GEN-LAST:event_jb_regresarActionPerformed
 
