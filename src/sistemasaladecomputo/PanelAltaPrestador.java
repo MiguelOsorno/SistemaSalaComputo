@@ -222,9 +222,21 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre");
 
+        jtf_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_nombreKeyTyped(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Apellido");
+
+        jtf_apellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_apellidoKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,9 +248,21 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("direccion");
 
+        jtf_direccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_direccionKeyTyped(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("telefono");
+
+        jtf_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_telefonoKeyTyped(evt);
+            }
+        });
 
         jb_agregar.setText("Guardar");
         jb_agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -308,13 +332,18 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jcb_tipo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jtf_InePrestador, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtf_nombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtf_apellido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
-                                .addGap(122, 122, 122)
-                                .addComponent(jLabel8)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jcb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jtf_InePrestador, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel8))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jtf_apellido, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                            .addComponent(jtf_nombre))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lbl_accion)
@@ -327,7 +356,7 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
                                     .addComponent(jb_regresar))
                                 .addComponent(jtf_direccion, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jtf_telefono, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +410,7 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -466,7 +495,12 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
-        }  
+        }
+          if(jtf_InePrestador.getText().length()>=10)
+        {
+           getToolkit().beep();         
+           evt.consume();
+        }
     }//GEN-LAST:event_jtf_InePrestadorKeyTyped
 
     private void jb_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_nuevoActionPerformed
@@ -485,6 +519,56 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,e.getMessage());
        }
     }//GEN-LAST:event_jb_modificarActionPerformed
+
+    private void jtf_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_nombreKeyTyped
+        char nombre =evt.getKeyChar();
+        if(Character.isDigit(nombre)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "no puede ingresar numeros");
+        }
+        if(jtf_nombre.getText().length()>=20)
+        {
+           getToolkit().beep();         
+           evt.consume();
+        }
+    }//GEN-LAST:event_jtf_nombreKeyTyped
+
+    private void jtf_apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_apellidoKeyTyped
+         char apellido =evt.getKeyChar();
+        if(Character.isDigit(apellido)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "no puede ingresar numeros");
+        }
+        if(jtf_apellido.getText().length()>=20)
+        {
+           getToolkit().beep();         
+           evt.consume();
+        }
+    }//GEN-LAST:event_jtf_apellidoKeyTyped
+
+    private void jtf_direccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_direccionKeyTyped
+        if(jtf_direccion.getText().length()>=20)
+        {
+           getToolkit().beep();         
+           evt.consume();
+        }
+    }//GEN-LAST:event_jtf_direccionKeyTyped
+
+    private void jtf_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_telefonoKeyTyped
+        char telefono =evt.getKeyChar();
+        if(Character.isLetter(telefono)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo se pueden agregar guion(-)");
+        }
+        if(jtf_telefono.getText().length()>=20)
+        {
+           getToolkit().beep();         
+           evt.consume();
+        }
+    }//GEN-LAST:event_jtf_telefonoKeyTyped
 
     /**
      * @param args the command line arguments

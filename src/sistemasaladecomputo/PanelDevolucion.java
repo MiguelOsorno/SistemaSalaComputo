@@ -198,6 +198,11 @@ public class PanelDevolucion extends javax.swing.JFrame {
                 jtf_claveArticuloActionPerformed(evt);
             }
         });
+        jtf_claveArticulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_claveArticuloKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -452,6 +457,21 @@ public class PanelDevolucion extends javax.swing.JFrame {
     private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_claveArticuloActionPerformed
+
+    private void jtf_claveArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveArticuloKeyTyped
+         char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !Character.isDigit(character) && !(Character.getType(character)==15))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números y letras");
+         }        
+        if(jtf_claveArticulo.getText().length()>=10)
+        {
+            getToolkit().beep();  
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtf_claveArticuloKeyTyped
 
     /**
      * @param args the command line arguments

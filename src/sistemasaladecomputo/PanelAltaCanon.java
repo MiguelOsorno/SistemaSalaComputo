@@ -176,9 +176,21 @@ public class PanelAltaCanon extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Color");
 
+        jtf_color.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_colorKeyTyped(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Clave");
+
+        jtf_claveCanon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_claveCanonKeyTyped(evt);
+            }
+        });
 
         jb_agregar.setText("Guardar");
         jb_agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -237,15 +249,20 @@ public class PanelAltaCanon extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jb_agregar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_regresar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtf_claveCanon))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtf_claveCanon, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtf_color, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtf_color, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -253,15 +270,8 @@ public class PanelAltaCanon extends javax.swing.JFrame {
                             .addComponent(jb_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jb_nuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbl_accion))
-                        .addGap(60, 60, 60))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jb_agregar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jb_regresar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(21, Short.MAX_VALUE))))
+                        .addGap(39, 39, 39)))
+                .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,7 +340,7 @@ public class PanelAltaCanon extends javax.swing.JFrame {
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
         if (obtenerAccionARealizar()) {
-            if (jtf_claveCanon.getText().isEmpty() || jtf_color.getText().isEmpty()) {
+            if (jtf_claveCanon.getText().isEmpty() || jtf_color.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "no dejar campos vacios");
             } else {
                 try {
@@ -343,7 +353,7 @@ public class PanelAltaCanon extends javax.swing.JFrame {
             }
         }
         else{
-            if (jtf_claveCanon.getText().isEmpty() || jtf_color.getText().isEmpty())
+            if (jtf_claveCanon.getText().isEmpty() || jtf_color.getText().trim().isEmpty())
             {
                  JOptionPane.showMessageDialog(null, "no dejar campos vacios");
             }
@@ -396,6 +406,36 @@ public class PanelAltaCanon extends javax.swing.JFrame {
         limpiar();
         jtf_claveCanon.setEnabled(true);
     }//GEN-LAST:event_jb_nuevoActionPerformed
+
+    private void jtf_claveCanonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveCanonKeyTyped
+         char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !Character.isDigit(character) && !(Character.getType(character)==15))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números y letras");
+         }
+        if(jtf_claveCanon.getText().length()>=10)
+        {
+           getToolkit().beep();         
+           evt.consume();
+        }
+    }//GEN-LAST:event_jtf_claveCanonKeyTyped
+
+    private void jtf_colorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_colorKeyTyped
+       char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !(Character.getType(character)==15) && !(Character.getType(character)==12))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números y letras");
+         }
+        if(jtf_color.getText().length()>=15)
+        {
+           getToolkit().beep();         
+           evt.consume();
+        }        
+    }//GEN-LAST:event_jtf_colorKeyTyped
 
     /**
      * @param args the command line arguments

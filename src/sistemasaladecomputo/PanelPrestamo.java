@@ -94,6 +94,8 @@ public class PanelPrestamo extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(204, 204, 255));
         jLabel6.setText("clave Encargado");
 
+        jtf_claveEncargado.setText("201");
+        jtf_claveEncargado.setEnabled(false);
         jtf_claveEncargado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtf_claveEncargadoKeyTyped(evt);
@@ -282,7 +284,18 @@ public class PanelPrestamo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtf_claveArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveArticuloKeyTyped
-
+         char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !Character.isDigit(character) && !(Character.getType(character)==15))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números y letras");
+         }
+        if(jtf_claveArticulo.getText().length()>=10)
+        {
+            getToolkit().beep();  
+            evt.consume();
+        }
     }//GEN-LAST:event_jtf_claveArticuloKeyTyped
 
     private void jtf_claveArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_claveArticuloActionPerformed
@@ -328,10 +341,16 @@ public class PanelPrestamo extends javax.swing.JFrame {
 
     private void jtf_inePrestadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_inePrestadorKeyTyped
         char ine =evt.getKeyChar();
-        if(Character.isLetter(ine)){
+        
+        if(!Character.isDigit(ine) && !(Character.getType(ine) == 15)){
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
+        }
+        if(jtf_inePrestador.getText().length()>=10)
+        {
+            getToolkit().beep();
+            evt.consume();
         }
     }//GEN-LAST:event_jtf_inePrestadorKeyTyped
 

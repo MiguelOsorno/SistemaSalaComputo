@@ -22,7 +22,7 @@ CREATE TABLE articulo(
     id INT AUTO_INCREMENT NOT NULL,
     clave VARCHAR(10) NOT NULL,
     estatus VARCHAR(15) NOT NULL,
-    descripcion VARCHAR(60) NOT NULL,
+    descripcion VARCHAR(250) NOT NULL,
     idTipoArticulo INT NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY(idTipoArticulo) REFERENCES tipoArticulo(id)

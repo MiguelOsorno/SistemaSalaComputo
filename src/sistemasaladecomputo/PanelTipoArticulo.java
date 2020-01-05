@@ -279,11 +279,16 @@ public class PanelTipoArticulo extends javax.swing.JFrame {
 
     private void jtf_cantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_cantidadKeyTyped
         char cantidad =evt.getKeyChar();
-        if(Character.isLetter(cantidad)){
+        if(!Character.isDigit(cantidad) && !(Character.getType(cantidad)==15)){
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
         }  
+        if(jtf_cantidad.getText().length()>=5)
+        {
+           getToolkit().beep();         
+           evt.consume();
+        }
     }//GEN-LAST:event_jtf_cantidadKeyTyped
 
     private void jb_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modificarActionPerformed

@@ -185,6 +185,12 @@ public class PanelAltaLibro extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Clave");
 
+        jtf_claveLibro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_claveLibroKeyTyped(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Titulo");
@@ -201,6 +207,12 @@ public class PanelAltaLibro extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Autor");
+
+        jtf_autor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_autorKeyTyped(evt);
+            }
+        });
 
         jb_agregarLibro.setText("Guardar");
         jb_agregarLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -366,7 +378,7 @@ public class PanelAltaLibro extends javax.swing.JFrame {
 
     private void jb_agregarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarLibroActionPerformed
         if (obtenerAccionARealizar()) {
-            if (jtf_claveLibro.getText().isEmpty() || jtf_titulo.getText().isEmpty() || jtf_autor.getText().isEmpty()) {
+            if (jtf_claveLibro.getText().isEmpty() || jtf_titulo.getText().trim().isEmpty() || jtf_autor.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "no dejar campos vacios");
             } else {
                 try {
@@ -379,7 +391,7 @@ public class PanelAltaLibro extends javax.swing.JFrame {
             }
         }
         else{
-            if (jtf_claveLibro.getText().isEmpty() || jtf_titulo.getText().isEmpty() || jtf_autor.getText().isEmpty())
+            if (jtf_claveLibro.getText().isEmpty() || jtf_titulo.getText().trim().isEmpty() || jtf_autor.getText().trim().isEmpty())
             {
                  JOptionPane.showMessageDialog(null, "no dejar campos vacios");
             }
@@ -427,18 +439,53 @@ public class PanelAltaLibro extends javax.swing.JFrame {
 
     private void jtf_tituloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_tituloKeyTyped
        char caracter=evt.getKeyChar();
-        System.out.println(caracter);
-        if(caracter=='|')
+        if(!Character.isLetter(caracter) && !Character.isDigit(caracter) && !(Character.getType(caracter)==15) && !(Character.getType(caracter)==12))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números y letras");
+         }               
+         if(jtf_titulo.getText().length()>=80)
         {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "No puede usar este caracter");
+           getToolkit().beep();         
+           evt.consume();
         }
     }//GEN-LAST:event_jtf_tituloKeyTyped
 
     private void jtf_tituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_tituloKeyPressed
        
     }//GEN-LAST:event_jtf_tituloKeyPressed
+
+    private void jtf_claveLibroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_claveLibroKeyTyped
+       char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !Character.isDigit(character) && !(Character.getType(character)==15))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números y letras");
+         }
+        if(jtf_claveLibro.getText().length()>=10)
+        {
+            getToolkit().beep();  
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtf_claveLibroKeyTyped
+
+    private void jtf_autorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_autorKeyTyped
+ char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !(Character.getType(character)==15) && !(Character.getType(character)==12))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+         }       
+     
+         if(jtf_autor.getText().length()>=80)
+        {
+           getToolkit().beep();         
+           evt.consume();
+        }
+    }//GEN-LAST:event_jtf_autorKeyTyped
 
     /**
      * @param args the command line arguments

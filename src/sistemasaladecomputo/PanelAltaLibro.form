@@ -198,6 +198,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtf_claveLibro">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtf_claveLibroKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -228,6 +231,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtf_autor">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtf_autorKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jb_agregarLibro">
               <Properties>
