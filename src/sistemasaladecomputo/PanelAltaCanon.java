@@ -428,7 +428,7 @@ public class PanelAltaCanon extends javax.swing.JFrame {
          {
              getToolkit().beep();
              evt.consume();
-             JOptionPane.showMessageDialog(null, "Ingrese solo números y letras");
+             JOptionPane.showMessageDialog(null, "Ingrese solo letras");
          }
         if(jtf_color.getText().length()>=15)
         {

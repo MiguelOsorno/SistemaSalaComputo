@@ -347,7 +347,7 @@ public class PanelPrestamo extends javax.swing.JFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
         }
-        if(jtf_inePrestador.getText().length()>=10)
+        if(jtf_inePrestador.getText().length()>=25)
         {
             getToolkit().beep();
             evt.consume();

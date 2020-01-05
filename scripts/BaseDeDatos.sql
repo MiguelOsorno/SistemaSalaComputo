@@ -49,25 +49,22 @@ CREATE TABLE prestamo(
 );
 
 INSERT INTO prestador(ine,nombre,apellido,tipo,direccion,telefono) 
-values (101,"Miguel","osorno","alumno","col.limon","111-111");
+values (101,"Miguel","osorno","alumno","col.limon","111111");
 
 INSERT INTO prestador(ine,nombre,apellido,tipo,direccion,telefono) 
-values (102,"Juan","lopez","alumno","col.durazno","111-112");
+values (102,"Juan","lopez","alumno","col.durazno","111112");
 
 INSERT INTO prestador(ine,nombre,apellido,tipo,direccion,telefono) 
-values (103,"Diego","Mendez","alumno","col.manzana","111-113");
+values (103,"Diego","Mendez","alumno","col.manzana","111113");
 
 INSERT INTO prestador(ine,nombre,apellido,tipo,direccion,telefono) 
-values (104,"Diana","velazco","maestro","col.pera","111-114");
+values (104,"Diana","velazco","maestro","col.pera","111114");
 
 INSERT INTO prestador(ine,nombre,apellido,tipo,direccion,telefono) 
-values (105,"jesus","munoz","maestro","col.sandia","111-115");
+values (105,"jesus","munoz","maestro","col.sandia","111115");
 
 INSERT INTO encargado(clave,nombre,apellido)
-values(201,"mariana","juarez");
-
-INSERT INTO encargado(clave,nombre,apellido)
-values(202,"maria","lopez");
+values(201,"administrador","admin");
 
 INSERT INTO tipoArticulo(descripcion,tiempo,cantidad)
 values("libro","hora",2);

@@ -439,7 +439,7 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
           if (obtenerAccionARealizar()) {
-            if (jtf_InePrestador.getText().isEmpty() || jtf_nombre.getText().isEmpty() || jtf_apellido.getText().isEmpty() || jtf_direccion.getText().isEmpty() || jtf_telefono.getText().isEmpty()){
+            if (jtf_InePrestador.getText().isEmpty() || jtf_nombre.getText().trim().isEmpty() || jtf_apellido.getText().trim().isEmpty() || jtf_direccion.getText().trim().isEmpty() || jtf_telefono.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "no dejar campos vacios");
             } else {
                 try {
@@ -452,7 +452,7 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
             }
         }
         else{
-            if (jtf_InePrestador.getText().isEmpty() || jtf_nombre.getText().isEmpty() || jtf_apellido.getText().isEmpty() || jtf_direccion.getText().isEmpty() || jtf_telefono.getText().isEmpty())
+            if (jtf_InePrestador.getText().isEmpty() || jtf_nombre.getText().trim().isEmpty() || jtf_apellido.getText().trim().isEmpty() || jtf_direccion.getText().trim().isEmpty() || jtf_telefono.getText().isEmpty())
             {
                  JOptionPane.showMessageDialog(null, "no dejar campos vacios");
             }
@@ -490,13 +490,14 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_regresarActionPerformed
 
     private void jtf_InePrestadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_InePrestadorKeyTyped
-         char ine =evt.getKeyChar();
-        if(Character.isLetter(ine)){
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Ingresa solo numeros");
-        }
-          if(jtf_InePrestador.getText().length()>=10)
+         char character =evt.getKeyChar();
+         if(!Character.isDigit(character) && !(Character.getType(character)==15))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números");
+         }
+          if(jtf_InePrestador.getText().length()>=25)
         {
            getToolkit().beep();         
            evt.consume();
@@ -521,13 +522,14 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_modificarActionPerformed
 
     private void jtf_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_nombreKeyTyped
-        char nombre =evt.getKeyChar();
-        if(Character.isDigit(nombre)){
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "no puede ingresar numeros");
-        }
-        if(jtf_nombre.getText().length()>=20)
+        char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !(Character.getType(character)==15) && !(Character.getType(character)==12))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+         }
+        if(jtf_nombre.getText().length()>=30)
         {
            getToolkit().beep();         
            evt.consume();
@@ -535,13 +537,14 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
     }//GEN-LAST:event_jtf_nombreKeyTyped
 
     private void jtf_apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_apellidoKeyTyped
-         char apellido =evt.getKeyChar();
-        if(Character.isDigit(apellido)){
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "no puede ingresar numeros");
-        }
-        if(jtf_apellido.getText().length()>=20)
+        char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !(Character.getType(character)==15) && !(Character.getType(character)==12))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+         }
+        if(jtf_apellido.getText().length()>=30)
         {
            getToolkit().beep();         
            evt.consume();
@@ -549,7 +552,14 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
     }//GEN-LAST:event_jtf_apellidoKeyTyped
 
     private void jtf_direccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_direccionKeyTyped
-        if(jtf_direccion.getText().length()>=20)
+         char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !Character.isDigit(character) && !(Character.getType(character)==15)&& !(Character.getType(character)==12))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números y letras");
+         }
+        if(jtf_direccion.getText().length()>=30)
         {
            getToolkit().beep();         
            evt.consume();
@@ -557,13 +567,14 @@ public class PanelAltaPrestador extends javax.swing.JFrame {
     }//GEN-LAST:event_jtf_direccionKeyTyped
 
     private void jtf_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_telefonoKeyTyped
-        char telefono =evt.getKeyChar();
-        if(Character.isLetter(telefono)){
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo se pueden agregar guion(-)");
-        }
-        if(jtf_telefono.getText().length()>=20)
+        char character =evt.getKeyChar();
+         if(!Character.isDigit(character) && !(Character.getType(character)==15))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números");
+         }
+        if(jtf_telefono.getText().length()>=12)
         {
            getToolkit().beep();         
            evt.consume();

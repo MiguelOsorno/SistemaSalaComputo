@@ -182,13 +182,31 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Clave");
 
+        jtf_clavePC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_clavePCKeyTyped(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Marca");
 
+        jtf_marca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_marcaKeyTyped(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Color");
+
+        jtf_color.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_colorKeyTyped(evt);
+            }
+        });
 
         jb_agregar.setText("Guardar");
         jb_agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -339,7 +357,7 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
        
           if (obtenerAccionARealizar()) {
-            if (jtf_clavePC.getText().isEmpty() || jtf_marca.getText().isEmpty() || jtf_color.getText().isEmpty()) {
+            if (jtf_clavePC.getText().trim().isEmpty() || jtf_marca.getText().trim().isEmpty() || jtf_color.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "no dejar campos vacios");
             } else {
                 try {
@@ -352,7 +370,7 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
             }
         }
         else{
-            if (jtf_clavePC.getText().isEmpty() || jtf_marca.getText().isEmpty() || jtf_color.getText().isEmpty())
+            if (jtf_clavePC.getText().trim().isEmpty() || jtf_marca.getText().trim().isEmpty() || jtf_color.getText().trim().isEmpty())
             {
                  JOptionPane.showMessageDialog(null, "no dejar campos vacios");
             }
@@ -404,6 +422,51 @@ public class PanelAltaComputadora extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,e.getMessage());
        }
     }//GEN-LAST:event_jb_modificarActionPerformed
+
+    private void jtf_clavePCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_clavePCKeyTyped
+         char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !Character.isDigit(character) && !(Character.getType(character)==15))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo números y letras");
+         }
+          if(jtf_clavePC.getText().length()>=10)
+        {
+            getToolkit().beep();  
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtf_clavePCKeyTyped
+
+    private void jtf_marcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_marcaKeyTyped
+        char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !(Character.getType(character)==15) && !(Character.getType(character)==12))
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+         }
+         if(jtf_marca.getText().length()>=20)
+        {
+            getToolkit().beep();  
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtf_marcaKeyTyped
+
+    private void jtf_colorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_colorKeyTyped
+        char character =evt.getKeyChar();
+         if(!Character.isLetter(character) && !(Character.getType(character)==15) && !(Character.getType(character)==12) )
+         {
+             getToolkit().beep();
+             evt.consume();
+             JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+         }
+         if(jtf_color.getText().length()>=15)
+        {
+            getToolkit().beep();  
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtf_colorKeyTyped
 
     /**
      * @param args the command line arguments
