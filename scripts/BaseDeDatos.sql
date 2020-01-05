@@ -64,7 +64,7 @@ INSERT INTO prestador(ine,nombre,apellido,tipo,direccion,telefono)
 values (105,"jesus","munoz","maestro","col.sandia","111115");
 
 INSERT INTO encargado(clave,nombre,apellido)
-values(201,"administrador","admin");
+values(201,"Miguel","Linares");
 
 INSERT INTO tipoArticulo(descripcion,tiempo,cantidad)
 values("libro","hora",2);

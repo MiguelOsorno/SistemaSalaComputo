@@ -1,9 +1,9 @@
 
 
 Version:	3.12
-CmdLine:	C:\Users\Miguel\Desktop\Entrega\SistemaPrestamo.exe --l4j-debug
+CmdLine:	C:\Users\Miguel\Desktop\Entrega_Miguel_Osorno\SistemaPrestamo.exe --l4j-debug
 WOW64:		yes
-Working dir:	C:\Users\Miguel\Desktop\Entrega\.
+Working dir:	C:\Users\Miguel\Desktop\Entrega_Miguel_Osorno\.
 Java min ver:	1.008.000_201
 Java max ver:	
 64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
@@ -21,84 +21,6 @@ Ignore:		1.008.000_201
 64-bit search:	SOFTWARE\JavaSoft\JDK...
 Runtime used:	1.008.000_201 (64-bit)
 Launcher:	C:\Program Files\Java\jre1.8.0_201\bin\javaw.exe
-Launcher args:	-jar "C:\Users\Miguel\Desktop\Entrega\SistemaPrestamo.exe"
-Args length:	58/32768 chars
-Exit code:	259
-
-
-Version:	3.12
-CmdLine:	C:\Users\Miguel\Desktop\Entrega\SistemaPrestamo.exe --l4j-debug
-WOW64:		yes
-Working dir:	C:\Users\Miguel\Desktop\Entrega\.
-Java min ver:	1.008.000_201
-Java max ver:	
-64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
-Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
-Ignore:		1.008.000
-Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_201
-Check launcher:	C:\Program Files\Java\jre1.8.0_201\bin\javaw.exe (OK)
-Match:		1.008.000_201
-64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
-Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
-Ignore:		1.008.000
-Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_201
-Ignore:		1.008.000_201
-64-bit search:	SOFTWARE\JavaSoft\JRE...
-64-bit search:	SOFTWARE\JavaSoft\JDK...
-Runtime used:	1.008.000_201 (64-bit)
-Launcher:	C:\Program Files\Java\jre1.8.0_201\bin\javaw.exe
-Launcher args:	-jar "C:\Users\Miguel\Desktop\Entrega\SistemaPrestamo.exe"
-Args length:	58/32768 chars
-Exit code:	259
-
-
-Version:	3.12
-CmdLine:	C:\Users\Miguel\Desktop\Entrega\SistemaPrestamo.exe --l4j-debug
-WOW64:		yes
-Working dir:	C:\Users\Miguel\Desktop\Entrega\.
-Java min ver:	1.008.000_201
-Java max ver:	
-64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
-Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
-Ignore:		1.008.000
-Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_201
-Check launcher:	C:\Program Files\Java\jre1.8.0_201\bin\javaw.exe (OK)
-Match:		1.008.000_201
-64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
-Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
-Ignore:		1.008.000
-Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_201
-Ignore:		1.008.000_201
-64-bit search:	SOFTWARE\JavaSoft\JRE...
-64-bit search:	SOFTWARE\JavaSoft\JDK...
-Runtime used:	1.008.000_201 (64-bit)
-Launcher:	C:\Program Files\Java\jre1.8.0_201\bin\javaw.exe
-Launcher args:	-jar "C:\Users\Miguel\Desktop\Entrega\SistemaPrestamo.exe"
-Args length:	58/32768 chars
-Exit code:	259
-
-
-Version:	3.12
-CmdLine:	C:\Users\Miguel\Desktop\Entrega\SistemaPrestamo.exe --l4j-debug
-WOW64:		yes
-Working dir:	C:\Users\Miguel\Desktop\Entrega\.
-Java min ver:	1.008.000_201
-Java max ver:	
-64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
-Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
-Ignore:		1.008.000
-Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_201
-Check launcher:	C:\Program Files\Java\jre1.8.0_201\bin\javaw.exe (OK)
-Match:		1.008.000_201
-64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
-Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
-Ignore:		1.008.000
-Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_201
-Ignore:		1.008.000_201
-64-bit search:	SOFTWARE\JavaSoft\JRE...
-64-bit search:	SOFTWARE\JavaSoft\JDK...
-Runtime used:	1.008.000_201 (64-bit)
-Launcher:	C:\Program Files\Java\jre1.8.0_201\bin\javaw.exe
-Launcher args:	-jar "C:\Users\Miguel\Desktop\Entrega\SistemaPrestamo.exe"
-Args length:	58/32768 chars
+Launcher args:	-jar "C:\Users\Miguel\Desktop\Entrega_Miguel_Osorno\SistemaPrestamo.exe"
+Args length:	72/32768 chars
 Exit code:	259
